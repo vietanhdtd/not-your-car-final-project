@@ -1,74 +1,64 @@
-import React from 'react'
+import React from "react";
 
-function Register () {
-    return (
-        <div>
-    <section id="page-title-area" className="section-padding overlay">
-        <div className="container">
-          <div className="row">
-            {/* Page Title Start */}
-            <div className="col-lg-12">
-              <div className="section-title  text-center">
-                <h2>SIGN UP</h2>
-                <span className="title-line"><i className="fa fa-car" /></span>
-                <p>sign up now to rent a car</p>
-              </div>
-            </div>
-            {/* Page Title End */}
-          </div>
-        </div>
-      </section>
-        <section id="lgoin-page-wrap" className="section-padding">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-8 col-md-8 m-auto">
-              <div className="login-page-content">
-                <div className="login-form">
-                  <form action="index.html">
-                    <div className="name">
-                      <div className="row">
-                        <div className="col-md-6">
-                          <input type="text" placeholder="First Name" />
-                        </div>
-                        <div className="col-md-6">
-                          <input type="text" placeholder="Last Name" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="username">
-                      <input type="email" placeholder="Email" />
-                    </div>
-                    <div className="username">
-                      <input type="text" placeholder="Username" />
-                    </div>
-                    <div className="password">
-                      <input type="password" placeholder="Password" />
-                    </div>
-                    <div className="log-btn">
-                      <button type="submit"><i className="fa fa-check-square" /> Sign Up</button>
-                    </div>
-                  </form>
+// reactstrap components
+import { Button, Card, Form, Input, Container, Row, Col } from "reactstrap";
+
+function RegisterPage() {
+  document.documentElement.classList.remove("nav-open");
+  React.useEffect(() => {
+    document.body.classList.add("register-page");
+    return function cleanup() {
+      document.body.classList.remove("register-page");
+    };
+  });
+  return (
+      <div
+        className="page-header"
+        style={{
+          backgroundImage: "url(" + require("assets/img/login-image.jpg") + ")"
+        }}
+      >
+        <div className="filter" />
+        <Container>
+          <Row>
+            <Col className="ml-auto mr-auto" lg="4">
+              <Card className="card-register ml-auto mr-auto">
+                <h3 className="title mx-auto">Welcome</h3>
+                <div className="social-line text-center">
+                  <Button 
+                  className="btn-round" 
+                  style = {{ backgroundColor : "#3b5998"}}
+                  href="https://127.0.0.1:5000/login/facebook"
+                  >
+                    login with facebook
+                  <i className="fa fa-facebook-square"  />
+                </Button>
                 </div>
-                <div className="login-other">
-                  <span className="or">or</span>
-                  <a href="#" className="login-with-btn facebook"><i className="fa fa-facebook" /> Signup With Facebook</a>
-                  <a href="#" className="login-with-btn google"><i className="fa fa-google" /> Signup With Google</a>
+                <Form className="register-form">
+                  <label>Email</label>
+                  <Input placeholder="Email" type="text" />
+                  <label>Password</label>
+                  <Input placeholder="Password" type="password" />
+                  <Button block className="btn-round" color="danger">
+                    Register
+                  </Button>
+                </Form>
+                <div className="forgot">
+                  <Button
+                    className="btn-link"
+                    color="danger"
+                    href="#pablo"
+                    onClick={e => e.preventDefault()}
+                  >
+                    Forgot password?
+                  </Button>
                 </div>
-                <div className="create-ac">
-                  <p>Have an account? <a href="login.html">Sign In</a></p>
-                </div>
-                <div className="login-menu">
-                  <a href="about.html">About</a>
-                  <span>|</span>
-                  <a href="contact.html">Contact</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-        </div>
-    )
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+  );
 }
 
-export default Register;
+export default RegisterPage;

@@ -21,16 +21,16 @@ function RegisterPage() {
         <div className="filter" />
         <Container>
           <Row>
-            <Col className="ml-auto mr-auto" lg="4">
+            <Col className="ml-auto mr-auto">
               <Card className="card-register ml-auto mr-auto">
-                <h3 className="title mx-auto">Welcome</h3>
+                <h3 className="title mx-auto font-weight-bold">Welcome</h3>
                 <div className="social-line text-center">
                   <Button 
                   className="btn-round" 
-                  style = {{ backgroundColor : "#3b5998"}}
+                  color="facebook-bg"
                   href="https://127.0.0.1:5000/login/facebook"
                   >
-                    login with facebook
+                    Sign Up with facebook
                   <i className="fa fa-facebook-square"  />
                 </Button>
                 </div>
@@ -38,6 +38,8 @@ function RegisterPage() {
                   <label>Email</label>
                   <Input placeholder="Email" type="text" />
                   <label>Password</label>
+                  <Input placeholder="Password" type="password" />
+                  <label>Confirm Password</label>
                   <Input placeholder="Password" type="password" />
                   <Button block className="btn-round" color="danger">
                     Register

@@ -2851,7 +2851,7 @@ License - nucleoapp.com/license/
 /*             Navigation Tabs                 */
 .nav-tabs-navigation {
   text-align: center;
-  border-bottom: 1px solid #F1EAE0;
+  border-bottom: 1px solid #928686;
   margin-bottom: 30px; }
   .nav-tabs-navigation .nav > .nav-item > .nav-link {
     padding-bottom: 20px; }
@@ -2898,7 +2898,7 @@ License - nucleoapp.com/license/
       .nav-tabs .nav-item .nav-link.active:before,
       .nav-tabs .nav-item .nav-link.active:hover:before,
       .nav-tabs .nav-item .nav-link.active:focus:before {
-        border-bottom: 11px solid #F1EAE0;
+        border-bottom: 11px solid #928686;
         border-left: 11px solid rgba(0, 0, 0, 0);
         border-right: 11px solid rgba(0, 0, 0, 0);
         content: "";
@@ -4464,10 +4464,10 @@ License - nucleoapp.com/license/
     border-radius: 12px; }
 
 .card-register {
-  background-color: #FF8F5E;
+  background-color: #000000b6;
   border-radius: 8px;
   color: #fff;
-  max-width: 350px;
+  max-width: 550px;
   margin: 20px 0 70px;
   min-height: 400px;
   padding: 30px; }
@@ -4482,6 +4482,7 @@ License - nucleoapp.com/license/
     text-align: center; }
   .card-register .input-group-text {
     border: 1px solid #FFFFFF; }
+
 
 .card-profile {
   margin-top: 30px;
@@ -4513,6 +4514,12 @@ License - nucleoapp.com/license/
 .landing-alert {
   margin-bottom: 0; }
 
+.all-car-header{
+  background-color: #0e2a44;
+  background-position: center center;
+  min-height: 50vh;
+  max-height: 999px;
+}
 .page-header {
   background-color: #B2AFAB;
   background-position: center center;
@@ -4648,7 +4655,7 @@ License - nucleoapp.com/license/
   margin-top: 10px; }
 
 .title-brand {
-  max-width: 730px;
+  max-width: 100%;
   margin: 0 auto;
   position: relative;
   text-align: center;
@@ -4666,7 +4673,8 @@ License - nucleoapp.com/license/
     right: -15px; }
 
 .presentation-title {
-  font-size: 7em;
+
+  font-size: 6rem;
   font-weight: 700;
   margin: 0;
   color: #FFFFFF;
@@ -4711,7 +4719,10 @@ License - nucleoapp.com/license/
     opacity: 1; }
 
 .page-header .content-center {
-  margin-top: 85px; }
+  margin-top: 1px;
+  width: 100%;
+  padding-bottom: 200px;
+ }
 
 .moving-clouds {
   position: absolute;
@@ -4843,7 +4854,7 @@ License - nucleoapp.com/license/
   /* IE10+ CSS styles go here */
   .page-header .content-center {
     position: absolute;
-    top: 50%;
+    top: 90%;
     left: 50%;
     transform: translate(-50%, -75%); }
   .page-header .presentation-title {
@@ -5647,7 +5658,11 @@ License - nucleoapp.com/license/
   .pricing-5 .title {
     text-align: center; }
   .presentation-page .presentation-title {
+    font-size: 2em; }
+
+  .presentation-title {
     font-size: 4em; }
+
   .presentation-page .title-brand .type {
     font-size: 12px;
     padding: 4px 7px;
@@ -6187,7 +6202,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .rdtPicker th.rdtNext,
 .rdtPicker th.rdtPrev,
 .rdtPicker .rdtTimeToggle {
-  color: #51cbce; }
+  color: #ec1668; }
 
 .rdtPrev span,
 .rdtNext span {
@@ -6351,7 +6366,6 @@ td.rdtYear:hover {
   border-bottom-right-radius: 0;
   border-right: 0;
   padding-right: 0;
-  border-left: 1px solid #DDDDDD;
   padding-left: .75rem; }
 
 .dropdown .dropdown-menu[x-placement="top-start"] {

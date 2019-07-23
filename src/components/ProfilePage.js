@@ -31,6 +31,7 @@ function ProfilePage() {
 
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
+    window.scrollTo(0, 0)
     if (window.innerWidth < 991) {
       const updateScroll = () => {
         let windowScrollTop = window.pageYOffset / 3;

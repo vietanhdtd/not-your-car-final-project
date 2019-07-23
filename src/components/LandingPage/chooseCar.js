@@ -1,43 +1,35 @@
 import React, { useState, useEffect } from "react";
-
+import { Link } from 'react-router-dom'
 // reactstrap components
 import { Container, Row, Col, Card, CardImg, CardBody, CardText } from "reactstrap";
 
 // core components
 
 
-function ChooseCar() {
+function ChooseCar(props) {
   const [listCar, setListCar] = useState([])
-  
-  const getCars = async () => {
-    const response = await fetch('https://127.0.0.1:5000/cars')
-    const jsonData = await response.json()
-    setListCar(jsonData)
-  }
-  console.log(listCar)
-
   useEffect(() => {
-    getCars()
-  }, [])
-  
+    setListCar(props.listCar)
+  },[])
   return (
     <>
       <div className="section">
         <Container>
+            <Row className="my-2"><h2 className="title mx-auto">choose your car</h2></Row>
           <Col>
-            <h2 className="title">choose your car</h2>
-            <Col className="w-100 d-flex flex-wrap">
-                {listCar.map(car => {
+            <Row className="w-100 d-flex flex-wrap">
+                {listCar.slice(0,6).map(car => {
                   return (
                     <Card style={{width: '20rem'}} className="mx-auto">
                   <CardImg top src={car.img} alt="cx-5" />
                   <CardBody>
-                      <CardText>{car.description}</CardText>
+                      <CardText>{car.description} {car.id}</CardText>
                   </CardBody>
                 </Card>
                   )
                 })}
-            </Col>
+            </Row>
+                <Link to="/allcars">View More</Link>
           </Col>
         </Container>
       </div>

@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+
+// reactstrap components
 import { Container,
   Row,
   Col,
@@ -8,11 +10,13 @@ import { Container,
   Input,
   Form,
   Modal } from "reactstrap";
-import  useForm from './Form/useForm'
-import validate from './ValidateRules/createPostValidateRules';
 
+import  useForm from './useForm'
+import validate from '../ValidateRules/createPostValidateRules';
 
-function RegisterPage() {
+function CreatePost() {
+  // const [data, setData] = useState({})
+  // const [result, setResult] = useState(false);
   const [modal, setModal] = useState(false);
   const postToDB = async () => {
     console.log(inputs)
@@ -36,22 +40,16 @@ function RegisterPage() {
   const toggleModal = () => {
       setModal(!modal);
   };
-  document.documentElement.classList.remove("nav-open");
-  React.useEffect(() => {
-    document.body.classList.add("register-page");
-    return function cleanup() {
-      document.body.classList.remove("register-page");
-    };
-  });
+
   return (
-      <div
-        className="page-header"
-        style={{
-          backgroundImage: "url(" + require("assets/img/login-image.jpg") + ")"
-        }}
-      >
-        <div className="filter" />
-        <Container className="mt-5"  style={{zIndex:1}}>
+    <div
+    className="page-header"
+    style={{
+      backgroundImage: "url(" + require("assets/img/ilya-yakover.jpg") + ")"
+    }}
+  >
+    <div className="filter" />
+      <Container className="mt-5" style={{zIndex:1}}>
         <Col><h1 className="text-white">Create Post</h1></Col>
         <Form onSubmit={handleSubmit}>
           <div className="row">
@@ -281,8 +279,8 @@ function RegisterPage() {
           </Row>
         </Form>
       </Container>
-      </div>
+    </div>
   );
 }
 
-export default RegisterPage;
+export default CreatePost;

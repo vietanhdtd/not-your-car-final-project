@@ -20,7 +20,7 @@ function Login() {
   return (
     <>
       <div
-        className="section section-image section-login"
+        className="page-header"
         style={{
           backgroundImage: "url(" + require("assets/img/login-image.jpg") + ")"
         }}

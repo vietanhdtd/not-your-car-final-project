@@ -13,16 +13,15 @@ import {
   Row,
   Col
 } from "reactstrap";
-// core components
 import * as ReactDatetime from "react-datetime";
 import Geosuggest from 'react-geosuggest';
-import validate from '../ValidateRules/bookingDateValidateRules';
+import validate from '../ValidateRules/CheckAvailableValidateRules';
 
 function IndexHeader(props) {
-  const [location, setLocation] = useState("")
+  const [location, setLocation] = useState()
   const [pickDate, setPickDate] = useState("")
   const [returnDate, setReturnDate] = useState("")
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({"":""})
   let yesterday = ReactDatetime.moment().subtract(1, 'day');
   
   const validPick = ( current ) => {
@@ -52,13 +51,16 @@ function IndexHeader(props) {
   }
   const handleBooking = () => {
     setErrors(validate(booking))
-    console.log(Object.keys(errors).length)
-  };  
 
-  useEffect(() => {
-    if (Object.keys(errors).length === 0 && handleBooking) {
+  };  
+  const hanldeCheking = () => {
+    if (Object.keys(errors).length === 0) {
       props.checkAvailable(booking)
+      console.log(Object.keys(errors).length)
     }
+  }
+  useEffect(() => {
+    hanldeCheking()
 }, [errors]);
   
   return (
@@ -79,6 +81,7 @@ function IndexHeader(props) {
             <Row className="mt-5">
               <Col sm="4" xs="12" className="mb-3">
               <Geosuggest
+                country = "VN"
                 initialValue = {location}
                 inputClassName = {`form ${errors.location && 'is-invalid'}`}
                 placeholder={'Your Location'}
@@ -92,8 +95,11 @@ function IndexHeader(props) {
                   <FormGroup className ={`form ${errors.pick_date && 'has-danger'}`}>
                     <InputGroup className="date" id="datetimepicker1">
                       <ReactDatetime
+                        utc = {true}
+                        timeFormat = 'HH:mm'
                         isValidDate={ validPick }
                         value={pickDate}
+                        timeFormat = 'HH:mm'
                         onChange={handlePickDateSelect}
                         inputProps={{
                           readOnly:true,
@@ -117,6 +123,8 @@ function IndexHeader(props) {
                   <FormGroup className ={`form ${errors.return_date && 'has-danger'}`}>
                     <InputGroup className="date" id="datetimepicker2">
                       <ReactDatetime
+                        utc = {true}
+                        timeFormat = 'HH:mm'
                         isValidDate={ validReturn }
                         value={returnDate}
                         onChange={handleReturnDateSelect}
@@ -139,7 +147,7 @@ function IndexHeader(props) {
                   </FormGroup>
             </Col>
             <Col sm="2" xs="12">
-            <Button type="submit" onClick={handleBooking}>Book</Button>
+            <Button className="text-dark" type="submit" color='warning' onClick={handleBooking} block>Check</Button>
             </Col>
               </Row>
           </Container>

@@ -9,5 +9,8 @@ export default function validate(values) {
     if (!values.fuel) {
       errors.fuel = 'Fuel is required';
     }
+    if (values.price <= 0) {
+      errors.price = 'Price must be higher than 0'
+    }
     return errors;
   };

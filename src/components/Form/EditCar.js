@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 
 // reactstrap components
 import { Container,
@@ -9,50 +9,59 @@ import { Container,
   Label,
   Input,
   Form,
-  Modal } from "reactstrap";
+  Modal,Card } from "reactstrap";
 
 import  useForm from './useForm'
-import validate from '../ValidateRules/createPostValidateRules';
+import validate from '../ValidateRules/CreatePostValidateRules';
 
-function CreatePost() {
-  // const [data, setData] = useState({})
-  // const [result, setResult] = useState(false);
+function EditCar(props) {
+  const [carInfo, setCarInfo] = useState({})
   const [modal, setModal] = useState(false);
+  console.log(carInfo)
   const postToDB = async () => {
-    console.log(inputs)
-    const response = await fetch(`https://127.0.0.1:5000/create_post`, {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
-        'Authorization': `Token ${sessionStorage.getItem("token")}`
-      },
-      body: JSON.stringify(inputs)
-    })
-    const jsonData = await response.json()
-    if (jsonData.success) {
-      toggleModal()
-    }
-    else alert ("fail")
+    console.log("subbmittttttttttttttttttttt",inputs)
+    // const response = await fetch(`https://127.0.0.1:5000/create_post`, {
+    //   method: "POST",
+    //   headers: {
+    //     'Accept': 'application/json, text/plain, */*',
+    //     'Content-Type': 'application/json',
+    //     'Authorization': `Token ${localStorage.getItem("token")}`
+    //   },
+    //   body: JSON.stringify(inputs)
+    // })
+    // const jsonData = await response.json()
+    // if (jsonData.success) {
+    //   toggleModal()
+    // }
   };
-  const {inputs, errors, handleInputChange, handleSubmit} = useForm(postToDB, validate);
+  const {inputs = {brand: carInfo.brand_name}, errors, handleInputChange, handleSubmit} = useForm(postToDB, validate);
 
   const toggleModal = () => {
       setModal(!modal);
   };
+  useEffect(() => {
+    setCarInfo(props.listCar.find(car => car.id == props.match.params.id))
+    document.body.classList.add("register-page");
+    return function cleanup() {
+      document.body.classList.remove("register-page");
+    };
+  });
 
   return (
     <div
-    className="page-header"
+    className="page-header pb-5"
     style={{
       backgroundImage: "url(" + require("assets/img/ilya-yakover.jpg") + ")"
     }}
   >
     <div className="filter" />
-      <Container className="mt-5" style={{zIndex:1}}>
-        <Col><h1 className="text-white">Create Post</h1></Col>
-        <Form onSubmit={handleSubmit}>
-          <div className="row">
+    <Container>
+      <Row>
+        <Col className="ml-auto mr-auto">
+          <Card className="card-create ml-auto mr-auto">
+            <h2 className="mx-auto mb-4 font-weight-bold">Create A Rental Car</h2>
+            <Form onSubmit={handleSubmit}>
+            <div className="row">
             <div className="col-sm-7 col-md-7">
               <Row>
               <Col className="form-group">
@@ -61,8 +70,9 @@ function CreatePost() {
                 </h6>
                 <Input
                   name="brand"
+                  defaultValue={inputs.brand}
                   onChange={handleInputChange} 
-                  value={inputs.brand || ""}
+                  value={inputs.brand}
                   placeholder="enter the brand name here..."
                   type="text"
                   className="border-input form-control"
@@ -75,7 +85,7 @@ function CreatePost() {
                 <Input
                   name="model"
                   onChange={handleInputChange} 
-                  value={inputs.model || ""}
+                  value={inputs.model = carInfo.model || ""}
                   placeholder="enter the model name here..."
                   type="text"
                   className="border-input form-control"
@@ -89,7 +99,7 @@ function CreatePost() {
                 <Input
                   name="class"
                   onChange={handleInputChange} 
-                  value={inputs.class || ""}
+                  value={inputs.class = carInfo.class_name || ""}
                   placeholder="enter the class Name here..."
                   type="text"
                   className="border-input form-control"
@@ -102,7 +112,7 @@ function CreatePost() {
                 <Input 
                   name="door"
                   onChange={handleInputChange} 
-                  value={inputs.door || ""}
+                  value={inputs.door = carInfo.door|| ""}
                   type="select"  
                   id="exampleSelect1"
                   >
@@ -123,7 +133,7 @@ function CreatePost() {
                 <Input 
                   name="gearbox"
                   onChange={handleInputChange} 
-                  value={inputs.gearbox || ""}
+                  value={inputs.gearbox = carInfo.gear_box || ""}
                   type="select" 
                   id="exampleSelect2">
                   <option value ="">Select</option>
@@ -143,7 +153,7 @@ function CreatePost() {
                 <Input 
                   name="fuel"
                   onChange={handleInputChange} 
-                  value={inputs.fuel || ""}
+                  value={inputs.fuel = carInfo.fuel || ""}
                   type="select"  
                   id="exampleSelect3">
                   <option value ="">Select</option>
@@ -157,6 +167,7 @@ function CreatePost() {
               </FormGroup>
               </Col>
               <Col>
+              <FormGroup className={`form ${errors.price && 'has-danger'}`} >
               <h6 className="text-white">
                     Price <span className="icon-danger">*</span>
                   </h6>
@@ -166,8 +177,9 @@ function CreatePost() {
                       onChange={handleInputChange} 
                       value={inputs.price || ""}
                       placeholder="enter price..."
-                      type="text"
+                      type="number"
                       className="border-input form-control"
+                      autoFocus
                     />
                     <div className="input-group-append">
                       <span className="input-group-text">
@@ -175,6 +187,10 @@ function CreatePost() {
                       </span>
                     </div>
                   </div>
+                  {errors.price && (
+                  <p className="help text-danger font-weight-bold">{errors.price}</p>
+                )}
+                </FormGroup>
               </Col>
               </Row>
               <div className="form-group mt-1 mb-5">
@@ -182,7 +198,7 @@ function CreatePost() {
                 <textarea
                   name="description"
                   onChange={handleInputChange} 
-                  value={inputs.description || ""}
+                  value={inputs.description = carInfo.description || ""}
                   maxLength={150}
                   placeholder="enter the description ..."
                   rows={8}
@@ -195,17 +211,17 @@ function CreatePost() {
               <h6 className="text-white">Product Image</h6>
               <div className="fileinput text-center mb-2">
                 <img
-                  style={{width:"200px"}}
+                  style={{width:"440px"}}
                   src="https://camo.githubusercontent.com/d1b266fad8e2d9abd4a033a02a68f98e5ca53509/68747470733a2f2f6d61726b6574696e676465636f6e746575646f2e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031372f30362f7468756d626e61696c2e706e67"
                   alt="..."
                 />
                 <Input
                   name="img"
                   onChange={handleInputChange} 
-                  value={inputs.img || ""}
+                  value={inputs.img = carInfo.img || ""}
                   placeholder="enter the image url here..."
                   type="text"
-                  className="border-input form-control"
+                  className="border-input form-control mt-3"
                 />
                 <div className="thumbnail">
                 </div>
@@ -222,8 +238,9 @@ function CreatePost() {
           </div>
           <Row>
               <Button
+                color="warning"
                 type="submit"
-                className="btn-round btn btn-info btn-block"
+                className="btn-round btn btn-block text-dark"
               >
                 Save &amp; Publish
               </Button>
@@ -278,9 +295,12 @@ function CreatePost() {
               </Modal>
           </Row>
         </Form>
-      </Container>
-    </div>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+  </div>
   );
 }
 
-export default CreatePost;
+export default EditCar;

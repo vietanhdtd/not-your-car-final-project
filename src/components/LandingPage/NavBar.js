@@ -18,54 +18,29 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
-function NavBar() {
+function NavBar(props) {
   const [navbarColor, setNavbarColor] = useState("navbar-transparent");
   const [navbarBrandColor, setNavbarBrandColor] = useState("text-white h6");
   const [navbarCollapse, setNavbarCollapse] = useState(false);
-  const [data, setData] = useState({});
-  const [isLoggin, setIsLoggin] = useState(false);
 
   const toggleNavbarCollapse = () => {
     setNavbarCollapse(!navbarCollapse);
     document.documentElement.classList.toggle("nav-open");
   };
-
-  const getWithToken = async path => {
-    await fetch(`https://127.0.0.1:5000/${path}`, {
-      method: "GET",
-      headers: {
-        Authorization: `Token ${sessionStorage.getItem("token")}`
-      }
-    })
-      .then(data => data.json())
-      .then(resp => {
-        setData(resp);
-        setIsLoggin(resp.success);
-      });
-  };
-  console.log(data);
-  console.log("api", data.success);
-  console.log(isLoggin);
-
-  const logOut = async path => {
-    await fetch(`https://127.0.0.1:5000/${path}`, {
+  
+  const logOut = async (e) => {
+    e.preventDefault();
+    window.location.replace('http://localhost:3000')
+    localStorage.clear();
+    await fetch('https://127.0.0.1:5000/logout', {
       method: "POST",
       headers: {
-        Authorization: `Token ${sessionStorage.getItem("token")}`
+        Authorization: `Token ${localStorage.getItem("token")}`,
+        'Content-Type': 'application/json'
       }
     });
-    sessionStorage.clear();
-
   };
-
   useEffect(() => {
-    const accessToken =
-      window.location.search.split("=")[0] === "?access_token"
-        ? window.location.search.split("=")[1]
-        : null;
-    sessionStorage.setItem("token", accessToken);
-    console.log("token", sessionStorage.getItem("token"));
-    getWithToken("user_profile");
     const updateNavbarColor = () => {
       if (
         document.documentElement.scrollTop > 299 ||
@@ -93,12 +68,12 @@ function NavBar() {
       <Container>
         <div className="navbar-translate">
           <NavbarBrand data-placement="bottom" title="Coded by VietAnhNguyen">
-            <Link
-              to="/"
+            <a
+              href="/"
               className={classnames("font-weight-bold", navbarBrandColor)}
             >
               not your car
-            </Link>
+            </a>
           </NavbarBrand>
           <button
             aria-expanded={navbarCollapse}
@@ -118,55 +93,53 @@ function NavBar() {
           isOpen={navbarCollapse}
         >
           <Nav navbar>
-              {isLoggin ? (
-              <UncontrolledDropdown nav>
-                <DropdownToggle
-                  aria-haspopup={true}
-                  caret
-                  color="default"
-                  data-toggle="dropdown"
-                  href="#pablo"
-                  id="navbarDropdownMenuLink"
-                  nav
-                  onClick={e => e.preventDefault()}
-                >
-                    {data.user_name}
-                </DropdownToggle>
-                <DropdownMenu aria-labelledby="navbarDropdownMenuLink">
-                  <DropdownItem
-                  
+              {props.isLoggin ? (
+                <>
+                <NavItem>
+                  <NavLink
+                    color="neutral"
+                    tag={Link}
+                    to="/createpost"
                   >
-                    <Link to="/createpost">Create Post</Link>
-                  </DropdownItem>
-                  <DropdownItem
-                  >
-                    <Link to="/profile">Profile</Link>
-                  </DropdownItem>
-                  <DropdownItem
-                    href="#pablo"
-                    onClick={() => logOut("logout")}
+                    Rent Out a Car +
+                  </NavLink>
+                  </NavItem>
+                  <NavItem>
+
+                  <NavLink
+                    tag={Link}
+                    to="/profile"
+                    >
+                    {props.userInfo.user_name} <i className="nc-icon nc-single-02" />
+                  </NavLink>
+                    </NavItem>
+                    <NavItem>
+                  <NavLink
+                  href="/"
+                  onClick={(e) => logOut(e)}
                   >
                     Log Out
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+                  </NavLink>
+                  </NavItem></>
               ) : (
                 <>
                 <NavItem> 
-                  <Link
+                  <Button
+                    tag={Link}
                     to="/register"
-                    class="btn btn-danger btn-round" 
+                    className="btn btn-danger btn-round" 
                   >
                     register
-                  </Link>
+                  </Button>
                 </NavItem>
                 <NavItem> 
-                  <Link
-                    class="btn btn-warning btn-round" 
+                  <Button
+                    tag={Link}
+                    className="btn btn-warning btn-round text-dark" 
                     to="/login"
                   >
                     login
-                </Link>
+                </Button>
                 </NavItem>
                 </>
               )}

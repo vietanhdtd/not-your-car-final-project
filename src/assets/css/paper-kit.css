@@ -934,7 +934,7 @@
 .btn-info {
   background-color: #51bcda;
   border-color: #51bcda;
-  color: #FFFFFF;
+  color: rgba(0, 0, 0, 0.726);
   opacity: 1;
   filter: alpha(opacity=100); }
   .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .btn-info:active:focus, .btn-info:active:hover, .btn-info.active:focus, .btn-info:not(:disabled):not(.disabled):active:focus, .btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active, .btn-info:not(:disabled):not(.disabled).active:focus,
@@ -968,7 +968,7 @@
 .btn-warning {
   background-color: #fbc658;
   border-color: #fbc658;
-  color: #FFFFFF;
+  color: rgba(0, 0, 0, 0.767);
   opacity: 1;
   filter: alpha(opacity=100); }
   .btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .btn-warning:active:focus, .btn-warning:active:hover, .btn-warning.active:focus, .btn-warning:not(:disabled):not(.disabled):active:focus, .btn-warning:not(:disabled):not(.disabled):active, .btn-warning:not(:disabled):not(.disabled).active, .btn-warning:not(:disabled):not(.disabled).active:focus,
@@ -1504,16 +1504,16 @@ textarea.form-control {
 
 .form-group {
   position: relative; }
-
+/* 
 .register-form .form-control {
-  border: 1px solid transparent !important; }
+  border: 1px solid transparent !important; } */
 
 .register-form .input-group .form-control {
   margin-left: -1px; }
 
-.register-form .input-group-prepend,
-.register-form .input-group-append {
-  border: 1px solid transparent !important; }
+/* .register-form .input-group-prepend, */
+/* .register-form .input-group-append {
+  border: 1px solid transparent !important; } */
 
 #inputs .input-group {
   margin-bottom: 1rem; }
@@ -4100,7 +4100,7 @@ License - nucleoapp.com/license/
     -webkit-transform: translateY(-10px);
     -ms-transform: translateY(-10px);
     -moz-transform: translateY(-10px); }
-  .card.no-transition:hover, .card.page-carousel:hover, .card.card-refine:hover, .card.card-register:hover {
+  .card.no-transition:hover, .card.page-carousel:hover, .card.card-refine:hover, .card.card-register:hover, .card.card-create:hover {
     box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
     transform: none;
     -webkit-transform: none;
@@ -4482,6 +4482,26 @@ License - nucleoapp.com/license/
     text-align: center; }
   .card-register .input-group-text {
     border: 1px solid #FFFFFF; }
+    
+.card-create {
+  background-color: #000000b6;
+  border-radius: 8px;
+  color: #fff;
+  max-width: 100%;
+  margin: 20px 0 70px;
+  min-height: 400px;
+  padding: 30px; }
+  .card-create label {
+    margin-top: 15px; }
+  .card-create .card-title {
+    color: #B33C12;
+    text-align: center; }
+  .card-create .btn {
+    margin-top: 30px; }
+  .card-create .forgot {
+    text-align: center; }
+  .card-create .input-group-text {
+    border: 1px solid #FFFFFF; }
 
 
 .card-profile {
@@ -4517,7 +4537,7 @@ License - nucleoapp.com/license/
 .all-car-header{
   background-color: #0e2a44;
   background-position: center center;
-  min-height: 50vh;
+  min-height: 40vh;
   max-height: 999px;
 }
 .page-header {
@@ -6068,7 +6088,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .rdtPicker {
   display: none;
   position: absolute;
-  width: 260px;
+  width: 350px;
   padding: 4px;
   margin-top: 1px;
   z-index: 99999 !important;
@@ -6202,7 +6222,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .rdtPicker th.rdtNext,
 .rdtPicker th.rdtPrev,
 .rdtPicker .rdtTimeToggle {
-  color: #ec1668; }
+  color: #ff0000; }
 
 .rdtPrev span,
 .rdtNext span {
@@ -6277,7 +6297,7 @@ td.rdtYear:hover {
     height: 40px;
     border: 1px solid transparent; }
 
-.rdtCounters .rdtCounter:last-child .rdtCount {
+.rdtCounters .rdtCounter:first-child .rdtCount {
   color: #51cbce;
   border-radius: 50%;
   border: 1px solid #51cbce; }

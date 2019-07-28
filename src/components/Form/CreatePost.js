@@ -1,4 +1,6 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
+
+// reactstrap components
 import { Container,
   Row,
   Col,
@@ -7,12 +9,14 @@ import { Container,
   Label,
   Input,
   Form,
-  Modal } from "reactstrap";
-import  useForm from './Form/useForm'
-import validate from './ValidateRules/createPostValidateRules';
+  Modal,Card } from "reactstrap";
 
+import  useForm from './useForm'
+import validate from '../ValidateRules/CreatePostValidateRules';
 
-function RegisterPage() {
+function CreatePost() {
+  // const [data, setData] = useState({})
+  // const [result, setResult] = useState(false);
   const [modal, setModal] = useState(false);
   const postToDB = async () => {
     console.log(inputs)
@@ -21,7 +25,7 @@ function RegisterPage() {
       headers: {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json',
-        'Authorization': `Token ${sessionStorage.getItem("token")}`
+        'Authorization': `Token ${localStorage.getItem("token")}`
       },
       body: JSON.stringify(inputs)
     })
@@ -29,31 +33,33 @@ function RegisterPage() {
     if (jsonData.success) {
       toggleModal()
     }
-    else alert ("fail")
   };
   const {inputs, errors, handleInputChange, handleSubmit} = useForm(postToDB, validate);
 
   const toggleModal = () => {
       setModal(!modal);
   };
-  document.documentElement.classList.remove("nav-open");
-  React.useEffect(() => {
+  useEffect(() => {
     document.body.classList.add("register-page");
     return function cleanup() {
       document.body.classList.remove("register-page");
     };
   });
+
   return (
-      <div
-        className="page-header"
-        style={{
-          backgroundImage: "url(" + require("assets/img/login-image.jpg") + ")"
-        }}
-      >
-        <div className="filter" />
-        <Container className="mt-5"  style={{zIndex:1}}>
-        <Col><h1 className="text-white">Create Post</h1></Col>
-        <Form onSubmit={handleSubmit}>
+    <div
+    className="page-header"
+    style={{
+      backgroundImage: "url(" + require("assets/img/ilya-yakover.jpg") + ")"
+    }}
+  >
+    <div className="filter" />
+    <Container>
+      <Row>
+        <Col className="ml-auto mr-auto">
+          <Card className="card-create ml-auto mr-auto">
+            <h2 className="mx-auto mb-4 font-weight-bold">Create A Rental Car</h2>
+            <Form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-sm-7 col-md-7">
               <Row>
@@ -159,6 +165,7 @@ function RegisterPage() {
               </FormGroup>
               </Col>
               <Col>
+              <FormGroup className={`form ${errors.price && 'has-danger'}`} >
               <h6 className="text-white">
                     Price <span className="icon-danger">*</span>
                   </h6>
@@ -168,7 +175,7 @@ function RegisterPage() {
                       onChange={handleInputChange} 
                       value={inputs.price || ""}
                       placeholder="enter price..."
-                      type="text"
+                      type="number"
                       className="border-input form-control"
                     />
                     <div className="input-group-append">
@@ -177,6 +184,10 @@ function RegisterPage() {
                       </span>
                     </div>
                   </div>
+                  {errors.price && (
+                  <p className="help text-danger font-weight-bold">{errors.price}</p>
+                )}
+                </FormGroup>
               </Col>
               </Row>
               <div className="form-group mt-1 mb-5">
@@ -197,7 +208,7 @@ function RegisterPage() {
               <h6 className="text-white">Product Image</h6>
               <div className="fileinput text-center mb-2">
                 <img
-                  style={{width:"200px"}}
+                  style={{width:"440px"}}
                   src="https://camo.githubusercontent.com/d1b266fad8e2d9abd4a033a02a68f98e5ca53509/68747470733a2f2f6d61726b6574696e676465636f6e746575646f2e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031372f30362f7468756d626e61696c2e706e67"
                   alt="..."
                 />
@@ -207,7 +218,7 @@ function RegisterPage() {
                   value={inputs.img || ""}
                   placeholder="enter the image url here..."
                   type="text"
-                  className="border-input form-control"
+                  className="border-input form-control mt-3"
                 />
                 <div className="thumbnail">
                 </div>
@@ -224,8 +235,9 @@ function RegisterPage() {
           </div>
           <Row>
               <Button
+                color="warning"
                 type="submit"
-                className="btn-round btn btn-info btn-block"
+                className="btn-round btn btn-block text-dark"
               >
                 Save &amp; Publish
               </Button>
@@ -280,9 +292,18 @@ function RegisterPage() {
               </Modal>
           </Row>
         </Form>
-      </Container>
-      </div>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+  </div>
   );
 }
 
-export default RegisterPage;
+export default CreatePost;
+
+
+//  <Container className="mt-5" style={{zIndex:1}}>
+//         <h2 className="text-white">Create A Rental Car </h2>
+
+//       </Container>

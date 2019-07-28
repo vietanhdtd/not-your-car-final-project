@@ -13,7 +13,6 @@ function Footer() {
             <ul>
               <li>
                 <a
-                  href="#"
                   target="_blank"
                 >
                   Viet Anh Nguyen
@@ -21,15 +20,13 @@ function Footer() {
               </li>
               <li>
                 <a
-                  href="http://blog.creative-tim.com/?ref=pkr-footer"
                   target="_blank"
                 >
-                  Blog
+                  Not Your Car <img src="https://img.icons8.com/small/16/000000/registered-trademark.png"/>
                 </a>
               </li>
               <li>
                 <a
-                  href="https://www.creative-tim.com/license?ref=pkr-footer"
                   target="_blank"
                 >
                   Licenses

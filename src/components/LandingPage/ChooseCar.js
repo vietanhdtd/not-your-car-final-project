@@ -158,8 +158,7 @@ function ChooseCar(props) {
                           <Col>
                         <Rating
                         readonly
-                        initialRating={5}
-                        // onChange={rate => setRate(rate)}
+                        initialRating={car.rate}
                         emptySymbol={
                           <FontAwesomeIcon
                             icon={faStar}

@@ -31,9 +31,9 @@ function NavBar(props) {
   
   const logOut = async (e) => {
     e.preventDefault();
-    window.location.replace('http://localhost:3000')
+    window.location.replace('https://notyourcar.netlify.com')
     localStorage.clear();
-    await fetch('https://127.0.0.1:5000/logout', {
+    await fetch('https://not-your-car.herokuapp.com/logout', {
       method: "POST",
       headers: {
         Authorization: `Token ${localStorage.getItem("token")}`,

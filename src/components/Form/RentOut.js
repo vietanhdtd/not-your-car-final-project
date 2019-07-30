@@ -14,13 +14,13 @@ import validate from '../ValidateRules/CreatePostValidateRules';
 import ImgUpload from '../ImageUpload'
 
 
-function RentOut() {
+function RentOut(props) {
   // const [data, setData] = useState({})
   // const [result, setResult] = useState(false);
   const [modal, setModal] = useState(false);
   const postToDB = async () => {
     console.log(inputs)
-    const response = await fetch(`https://127.0.0.1:5000/create_post`, {
+    const response = await fetch(`https://not-your-car.herokuapp.com/create_post`, {
       method: "POST",
       headers: {
         'Accept': 'application/json, text/plain, */*',
@@ -31,13 +31,15 @@ function RentOut() {
     })
     const jsonData = await response.json()
     if (jsonData.success) {
-      toggleModal()
+      setModal(true)
     }
   };
   const {inputs, errors, handleInputChange, handleSubmit} = useForm(postToDB, validate);
 
   const toggleModal = () => {
-      setModal(!modal);
+      props.setIsCreated(true)
+      props.getCars()
+      setModal(false);
   };
 
   const handleImageUrl = (img_url) => {
@@ -198,8 +200,8 @@ function RentOut() {
                 </FormGroup>
               </Col>
               </Row>
-              <div className="form-group mt-1 mb-5">
-                <h6 className="text-white">Description</h6>
+              <div className={`form-group mt-1 mb-5  ${errors.description && 'has-danger'}`}>
+                <h6 className="text-white">Description<span className="icon-danger">*</span></h6>
                 <textarea
                   name="description"
                   onChange={handleInputChange} 
@@ -210,10 +212,13 @@ function RentOut() {
                   className="textarea-limited form-control"
                   defaultValue={""}
                 />
+                {errors.description && (
+                  <p className="help text-danger font-weight-bold">{errors.description}</p>
+                )}
               </div>
             </div>
                   <div className="col-sm-5 col-md-5">
-              <h6 className="text-white">Product Image</h6>
+              <h6 className="text-white">Product Image<span className="icon-danger">*</span></h6>
               <div className="fileinput text-center mb-2">
                 {/* <Form>
               <ImgUpload
@@ -268,21 +273,11 @@ function RentOut() {
                     className="modal-title text-center"
                     id="exampleModalLabel"
                   >
-                    Modal title
+                    Congratulation
                   </h5>
                 </div>
                 <div className="modal-body">
-                  Far far away, behind the word mountains, far from the
-                  countries Vokalia and Consonantia, there live the blind texts.
-                  Separated they live in Bookmarksgrove right at the coast of
-                  the Semantics, a large language ocean. A small river named
-                  Duden flows by their place and supplies it with the necessary
-                  regelialia. It is a paradisematic country, in which roasted
-                  parts of sentences fly into your mouth. Even the all-powerful
-                  Pointing has no control about the blind texts it is an almost
-                  unorthographic life One day however a small line of blind text
-                  by the name of Lorem Ipsum decided to leave for the far World
-                  of Grammar.
+                  Your car has been posted to <strong>not your car</strong>. Now every one can rents your car. 
                 </div>
                 <div className="modal-footer">
                   <div className="left-side">

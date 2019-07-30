@@ -18,7 +18,7 @@ function EditCar(props) {
   console.log(carInfo)
   const postToDB = async () => {
     console.log("subbmittttttttttttttttttttt",inputs)
-    // const response = await fetch(`https://127.0.0.1:5000/create_post`, {
+    // const response = await fetch(`https://not-your-car.herokuapp.com/create_post`, {
     //   method: "POST",
     //   headers: {
     //     'Accept': 'application/json, text/plain, */*',

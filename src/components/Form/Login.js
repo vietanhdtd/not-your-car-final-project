@@ -22,7 +22,7 @@ function Login() {
   const [alertDanger, setAlertDanger] = useState(false);
 
   const Login = async () => {
-    const response = await fetch(`https://127.0.0.1:5000/login`, {
+    const response = await fetch(`https://not-your-car.herokuapp.com/login`, {
       method: "POST",
       headers: {
         'Accept': 'application/json, text/plain, */*',
@@ -34,7 +34,7 @@ function Login() {
     if (jsonData.success)
     setData(jsonData)
     setAlertDanger(true)
-      window.location.replace(`http://localhost:3000/?access_token=${jsonData.token}`)
+      window.location.replace(`https://notyourcar.netlify.com/?access_token=${jsonData.token}`)
     if (jsonData.result)
       setData(jsonData)
   };
@@ -73,7 +73,7 @@ function Login() {
                   <Button
                     className="btn-round  mt-0 mb-4"
                     color="facebook-bg"
-                    href="https://127.0.0.1:5000/login/facebook"
+                    href="https://not-your-car.herokuapp.com/login/facebook"
                   >
                     Login with facebook
                   <i className="fa fa-facebook-square" />

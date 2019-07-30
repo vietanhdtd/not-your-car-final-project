@@ -49,16 +49,17 @@ function App(props) {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [check, setCheck] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isCreated, setIsCreated] = useState(false);
 
   const getCars = async () => {
-    const response = await fetch("https://127.0.0.1:5000/cars");
+    const response = await fetch("https://not-your-car.herokuapp.com/cars");
     const jsonData = await response.json();
     setListCar(jsonData);
     setLoading(true);
   };
 
   const checkAvailable = async booking => {
-    const response = await fetch("https://127.0.0.1:5000/check_available", {
+    const response = await fetch("https://not-your-car.herokuapp.com/check_available", {
       method: "POST",
       headers: {
         Authorization: `Token ${localStorage.getItem("token")}`,
@@ -77,7 +78,7 @@ function App(props) {
   console.log(availableCar);
 
   const getUserInfo = async () => {
-    const response = await fetch("https://127.0.0.1:5000/user_profile", {
+    const response = await fetch("https://not-your-car.herokuapp.com/user_profile", {
       method: "GET",
       headers: {
         Authorization: `Token ${token}`
@@ -90,7 +91,7 @@ function App(props) {
 
   const getBookingDate = async () => {
     const response = await fetch(
-      "https://127.0.0.1:5000/get_booking_datetime",
+      "https://not-your-car.herokuapp.com/get_booking_datetime",
       {
         method: "POST",
         headers: {
@@ -177,7 +178,7 @@ function App(props) {
           path="/profile"
           component={() => <ProfilePage userInfo={userInfo} />}
         />
-        <PrivateRoute path="/rentout" component={RentOut} />
+        <PrivateRoute path="/rentout" component={() => isCreated ? <Redirect to='/allcars' /> : <RentOut getCars={getCars} setIsCreated = {setIsCreated} />} />
         <Route path="/login" component={() => isLoggin ? <Redirect to="/" /> : <Login/>} />
         <PrivateRoute
           path="/allcars/:id"

@@ -135,7 +135,7 @@ function AllCars(props) {
                                 <Badge color="vanh">{car.gear_box}</Badge>{" "}
                         </CardText>
                             <Rating
-                                // onChange={rate => setRate(rate)}
+                                initialRating={car.rate}
                                 emptySymbol={
                                 <FontAwesomeIcon
                                     icon={faStar}
@@ -188,7 +188,7 @@ function AllCars(props) {
                                 <Badge color="vanh">{car.gear_box}</Badge>{" "}
                         </CardText>
                             <Rating
-                        // onChange={rate => setRate(rate)}
+                        initialRating={car.rate}
                         emptySymbol={
                           <FontAwesomeIcon
                             icon={faStar}
@@ -240,7 +240,7 @@ function AllCars(props) {
                             <Rating
                             readonly
                             initialRating={5}
-                        // onChange={rate => setRate(rate)}
+                            initialRating={car.rate}
                         emptySymbol={
                           <FontAwesomeIcon
                             icon={faStar}

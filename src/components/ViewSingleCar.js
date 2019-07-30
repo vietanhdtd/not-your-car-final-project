@@ -65,7 +65,7 @@ function ViewSingleCar(props) {
                   return_date: returnDate,
                   car_id : carInfo.id
     }
-    let response = await fetch(`https://127.0.0.1:5000/booking`, {
+    let response = await fetch(`https://not-your-car.herokuapp.com/booking`, {
       method: "POST",
       headers: {
         'Authorization': `Token ${localStorage.getItem("token")}`,
@@ -87,7 +87,7 @@ function ViewSingleCar(props) {
   const getBookingDate = async () => {
     const data = {'car_id' : props.match.params.id}
     console.log(data)
-    const response = await fetch("https://127.0.0.1:5000/get_booking_datetime", {
+    const response = await fetch("https://not-your-car.herokuapp.com/get_booking_datetime", {
       method: "POST",
       headers: {
         Authorization: `Token ${localStorage.getItem("token")}`,

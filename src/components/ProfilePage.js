@@ -47,7 +47,7 @@ function ProfilePage(props) {
     }
   };
   const getUserCar = async () => {
-    const response = await fetch("https://127.0.0.1:5000/get_user_car", {
+    const response = await fetch("https://not-your-car.herokuapp.com/get_user_car", {
       method: "GET",
       headers: {
         Authorization: `Token ${localStorage.getItem("token")}`
@@ -57,7 +57,7 @@ function ProfilePage(props) {
     setListCar(jsonData);
   };
   const getUserBooking = async () => {
-    const response = await fetch("https://127.0.0.1:5000/get_user_booking", {
+    const response = await fetch("https://not-your-car.herokuapp.com/get_user_booking", {
       method: "GET",
       headers: {
         Authorization: `Token ${localStorage.getItem("token")}`
@@ -90,9 +90,13 @@ function ProfilePage(props) {
     setAlert(!alert);
   };
 
+  const handleStar = (e) => {
+    e.preventDefault()
+    setRate(e)
+  }
   const handleRating = async () => {
     console.log(rate);
-    const response = await fetch("https://127.0.0.1:5000/rating", {
+    const response = await fetch("https://not-your-car.herokuapp.com/rating", {
       method: "POST",
       headers: {
         Authorization: `Token ${localStorage.getItem("token")}`,
@@ -105,7 +109,7 @@ function ProfilePage(props) {
   };
 
   const declineBooking = async () => {
-    const response = await fetch("https://127.0.0.1:5000/decline_booking", {
+    const response = await fetch("https://not-your-car.herokuapp.com/decline_booking", {
       method: "POST",
       headers: {
         Authorization: `Token ${localStorage.getItem("token")}`,
@@ -124,7 +128,7 @@ function ProfilePage(props) {
   };
 
   const confirmBooking = async () => {
-    const response = await fetch("https://127.0.0.1:5000/confirm_booking", {
+    const response = await fetch("https://not-your-car.herokuapp.com/confirm_booking", {
       method: "POST",
       headers: {
         Authorization: `Token ${localStorage.getItem("token")}`,
@@ -143,7 +147,7 @@ function ProfilePage(props) {
   };
 
   const checkoutBooking = async () => {
-    const response = await fetch("https://127.0.0.1:5000/checkout_booking", {
+    const response = await fetch("https://not-your-car.herokuapp.com/checkout_booking", {
       method: "POST",
       headers: {
         Authorization: `Token ${localStorage.getItem("token")}`,
@@ -184,6 +188,7 @@ function ProfilePage(props) {
     getUserBooking();
     getUserCar();
   }, []);
+
   return (
     <>
       <div
@@ -570,7 +575,7 @@ function ProfilePage(props) {
                   <>
                     <div className="modal-body">
                       <Rating
-                        onChange={rate => setRate(rate)}
+                        onChange={rate => {handleStar(rate)}}
                         emptySymbol={
                           <FontAwesomeIcon
                             icon={faStar}
@@ -619,7 +624,7 @@ function ProfilePage(props) {
                   <>
                     <div className="modal-body">
                       <p> Do you want to checkout right now? </p>
-                      <p> The Bill will be generated after you hit confirm </p>
+                      <p> The bill will be generated after you hit confirm </p>
                     </div>
                     <div className="modal-footer">
                       <div className="left-side">
@@ -657,3 +662,4 @@ function ProfilePage(props) {
 }
 
 export default ProfilePage;
+

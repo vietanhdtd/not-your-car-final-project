@@ -9,7 +9,7 @@ function RegisterPage() {
   document.documentElement.classList.remove("nav-open");
   const Register = async () => {
     console.log(inputs)
-    const response = await fetch(`https://127.0.0.1:5000/register`, {
+    const response = await fetch(`https://not-your-car.herokuapp.com/register`, {
       method: "POST",
       headers: {
         'Accept': 'application/json, text/plain, */*',
@@ -22,7 +22,7 @@ function RegisterPage() {
     console.log("check error email",errors.result)
     setData(jsonData.result)
     if (jsonData.success)
-    window.location.replace('http://localhost:3000/login')
+    window.location.replace('https://notyourcar.netlify.com//login')
   };
 
   const { inputs, errors, handleInputChange, handleSubmit } = useForm (
@@ -57,7 +57,7 @@ function RegisterPage() {
                 <Button
                   className="btn-round mt-0 mb-4"
                   color="facebook-bg"
-                  href="https://127.0.0.1:5000/login/facebook"
+                  href="https://not-your-car.herokuapp.com/login/facebook"
                 >
                   Register with facebook
                   <i className="fa fa-facebook-square" />

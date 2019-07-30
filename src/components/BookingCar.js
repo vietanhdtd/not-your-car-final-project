@@ -210,46 +210,55 @@ function BookingCar(props) {
                   </Col>
                   <Col>
                   <div className="h-75">
-                  <CardTitle>Card title</CardTitle>
+                  <CardTitle style={{fontSize:'1.25rem', marginBottom: 10}}>{car.brand_name} {car.model}</CardTitle>
                     <CardSubtitle className="mb-2 text-muted">
-                      Card subtitle
+                      <Badge
+                        color={car.car_status === "Available"? "success": "danger"} pill>{car.car_status}</Badge>
                     </CardSubtitle>
                     <CardText>
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
+                      {car.description}
+                    </CardText>
+                    <CardText>
+                    <Badge color="vanh">{car.class_name}</Badge>{" "}
+                        <Badge color="vanh">{car.fuel}</Badge>{" "}
+                        <Badge color="vanh">{car.door} door</Badge>{" "}
+                        <Badge color="vanh">{car.gear_box}</Badge>{" "}
+                    </CardText>
+                    <CardText>
+                    <Row>
+                            <Col xs="8" lg="10">
+                            <Rating
+                                readonly
+                                initialRating={car.rate}
+                                emptySymbol={
+                                <FontAwesomeIcon
+                                    icon={faStar}
+                                    color="#f5f5f0"
+                                    // size="3x"
+                                />
+                                }
+                                fullSymbol={
+                                <FontAwesomeIcon
+                                    icon={faStar}
+                                    color="#fabd3c"
+                                    // size="3x"
+                                />
+                                }
+                            />
+                            </Col>
+                            <Col>
+                            <Badge color="default">
+                                <h6>
+                                ${car.price}
+                                <small> /day</small>
+                                </h6>{" "}
+                            </Badge>
+                            </Col>
+                        </Row>
                     </CardText>
                   </div>
-                    <Row className="align-items-end">
-                      status: 
-                      <Badge
-                        color={
-                            car.car_status === "Available"
-                            ? "success"
-                            : "danger"
-                        }
-                        pill
-                      >
-                        {car.car_status}
-                      </Badge>
-                    </Row>
                   </Col>
-                  <Rating
-                        // onChange={rate => setRate(rate)}
-                        emptySymbol={
-                          <FontAwesomeIcon
-                            icon={faStar}
-                            color="#f5f5f0"
-                            // size="3x"
-                          />
-                        }
-                        fullSymbol={
-                          <FontAwesomeIcon
-                            icon={faStar}
-                            color="#fabd3c"
-                            // size="3x"
-                          />
-                        }
-                      />
+                 
                 </CardBody>
               </Card>
             </Link>

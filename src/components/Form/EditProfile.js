@@ -11,56 +11,45 @@ import { Container,
 
 import  useForm from './useForm'
 import validate from '../ValidateRules/CreatePostValidateRules';
-import ImgUpload from '../ImageUpload'
 
-
-function RentOut(props) {
-  // const [data, setData] = useState({})
-  // const [result, setResult] = useState(false);
+function EditProfile(props) {
+  const [carInfo, setCarInfo] = useState({})
   const [modal, setModal] = useState(false);
+  console.log(carInfo)
   const postToDB = async () => {
-    console.log(inputs)
-    const response = await fetch(`https://not-your-car.herokuapp.com/create_post`, {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
-        'Authorization': `Token ${localStorage.getItem("token")}`
-      },
-      body: JSON.stringify(inputs)
-    })
-    const jsonData = await response.json()
-    if (jsonData.success) {
-      setModal(true)
-    }
+    console.log("subbmittttttttttttttttttttt",inputs)
+    // const response = await fetch(`https://not-your-car.herokuapp.com/create_post`, {
+    //   method: "POST",
+    //   headers: {
+    //     'Accept': 'application/json, text/plain, */*',
+    //     'Content-Type': 'application/json',
+    //     'Authorization': `Token ${localStorage.getItem("token")}`
+    //   },
+    //   body: JSON.stringify(inputs)
+    // })
+    // const jsonData = await response.json()
+    // if (jsonData.success) {
+    //   toggleModal()
+    // }
   };
   const {inputs, errors, handleInputChange, handleSubmit} = useForm(postToDB, validate);
 
   const toggleModal = () => {
-      props.setIsCreated(true)
-      props.getCars()
-      setModal(false);
+      setModal(!modal);
   };
-
-  const handleImageUrl = (img_url) => {
-      console.log(img_url)
-  }
-  
   useEffect(() => {
-    window.scrollTo(0, 0);
+    setCarInfo(props.listCar.find(car => car.id == props.match.params.id))
     document.body.classList.add("register-page");
-    // document.body.style.overflow = "hidden";
     return function cleanup() {
       document.body.classList.remove("register-page");
-    // document.body.style.overflow = "auto";
     };
   });
 
   return (
     <div
-    className="page-header"
+    className="page-header pb-5"
     style={{
-      backgroundImage: "url(" + require("assets/img/rent-out.jpg") + ")"
+      backgroundImage: "url(" + require("assets/img/ilya-yakover.jpg") + ")"
     }}
   >
     <div className="filter" />
@@ -68,9 +57,9 @@ function RentOut(props) {
       <Row>
         <Col className="ml-auto mr-auto">
           <Card className="card-create ml-auto mr-auto">
-            <h2 className="mx-auto mb-4 font-weight-bold">Rent Out Your Car</h2>
+            <h2 className="mx-auto mb-4 font-weight-bold">Create A Rental Car</h2>
             <Form onSubmit={handleSubmit}>
-          <div className="row">
+            <div className="row">
             <div className="col-sm-7 col-md-7">
               <Row>
               <Col className="form-group">
@@ -79,8 +68,9 @@ function RentOut(props) {
                 </h6>
                 <Input
                   name="brand"
+                  defaultValue={inputs.brand}
                   onChange={handleInputChange} 
-                  value={inputs.brand || ""}
+                  value={inputs.brand}
                   placeholder="enter the brand name here..."
                   type="text"
                   className="border-input form-control"
@@ -93,7 +83,6 @@ function RentOut(props) {
                 <Input
                   name="model"
                   onChange={handleInputChange} 
-                  value={inputs.model || ""}
                   placeholder="enter the model name here..."
                   type="text"
                   className="border-input form-control"
@@ -107,7 +96,6 @@ function RentOut(props) {
                 <Input
                   name="class"
                   onChange={handleInputChange} 
-                  value={inputs.class || ""}
                   placeholder="enter the class Name here..."
                   type="text"
                   className="border-input form-control"
@@ -120,7 +108,7 @@ function RentOut(props) {
                 <Input 
                   name="door"
                   onChange={handleInputChange} 
-                  value={inputs.door || ""}
+                  // value={inputs.door = carInfo.door|| ""}
                   type="select"  
                   id="exampleSelect1"
                   >
@@ -141,7 +129,7 @@ function RentOut(props) {
                 <Input 
                   name="gearbox"
                   onChange={handleInputChange} 
-                  value={inputs.gearbox || ""}
+                  // value={inputs.gearbox = carInfo.gear_box || ""}
                   type="select" 
                   id="exampleSelect2">
                   <option value ="">Select</option>
@@ -161,7 +149,7 @@ function RentOut(props) {
                 <Input 
                   name="fuel"
                   onChange={handleInputChange} 
-                  value={inputs.fuel || ""}
+                  // value={inputs.fuel = carInfo.fuel || ""}
                   type="select"  
                   id="exampleSelect3">
                   <option value ="">Select</option>
@@ -187,6 +175,7 @@ function RentOut(props) {
                       placeholder="enter price..."
                       type="number"
                       className="border-input form-control"
+                      autoFocus
                     />
                     <div className="input-group-append">
                       <span className="input-group-text">
@@ -200,31 +189,23 @@ function RentOut(props) {
                 </FormGroup>
               </Col>
               </Row>
-              <div className={`form-group mt-1 mb-5  ${errors.description && 'has-danger'}`}>
-                <h6 className="text-white">Description<span className="icon-danger">*</span></h6>
+              <div className="form-group mt-1 mb-5">
+                <h6 className="text-white">Description</h6>
                 <textarea
                   name="description"
                   onChange={handleInputChange} 
-                  value={inputs.description || ""}
+                  // value={inputs.description = carInfo.description || ""}
                   maxLength={150}
                   placeholder="enter the description ..."
                   rows={8}
                   className="textarea-limited form-control"
                   defaultValue={""}
                 />
-                {errors.description && (
-                  <p className="help text-danger font-weight-bold">{errors.description}</p>
-                )}
               </div>
             </div>
                   <div className="col-sm-5 col-md-5">
-              <h6 className="text-white">Product Image<span className="icon-danger">*</span></h6>
+              <h6 className="text-white">Product Image</h6>
               <div className="fileinput text-center mb-2">
-                {/* <Form>
-              <ImgUpload
-                      handleImageUrl={(img_url) => handleImageUrl(img_url)}
-                    />
-                </Form> */}
                 <img
                   style={{width:"440px"}}
                   src="https://camo.githubusercontent.com/d1b266fad8e2d9abd4a033a02a68f98e5ca53509/68747470733a2f2f6d61726b6574696e676465636f6e746575646f2e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031372f30362f7468756d626e61696c2e706e67"
@@ -233,21 +214,21 @@ function RentOut(props) {
                 <Input
                   name="img"
                   onChange={handleInputChange} 
-                  value={inputs.img || ""}
+                  // value={inputs.img = carInfo.img || ""}
                   placeholder="enter the image url here..."
                   type="text"
                   className="border-input form-control mt-3"
                 />
                 <div className="thumbnail">
                 </div>
-                <div>
+                {/* <div>
                   <button
                     type="button"
                     className="btn-round btn btn-outline-default"
                   >
                     Select image
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -273,11 +254,21 @@ function RentOut(props) {
                     className="modal-title text-center"
                     id="exampleModalLabel"
                   >
-                    Congratulation
+                    Modal title
                   </h5>
                 </div>
                 <div className="modal-body">
-                  Your car has been posted to <strong>not your car</strong>. Now every one can rents your car. 
+                  Far far away, behind the word mountains, far from the
+                  countries Vokalia and Consonantia, there live the blind texts.
+                  Separated they live in Bookmarksgrove right at the coast of
+                  the Semantics, a large language ocean. A small river named
+                  Duden flows by their place and supplies it with the necessary
+                  regelialia. It is a paradisematic country, in which roasted
+                  parts of sentences fly into your mouth. Even the all-powerful
+                  Pointing has no control about the blind texts it is an almost
+                  unorthographic life One day however a small line of blind text
+                  by the name of Lorem Ipsum decided to leave for the far World
+                  of Grammar.
                 </div>
                 <div className="modal-footer">
                   <div className="left-side">
@@ -308,10 +299,4 @@ function RentOut(props) {
   );
 }
 
-export default RentOut;
-
-
-//  <Container className="mt-5" style={{zIndex:1}}>
-//         <h2 className="text-white">Create A Rental Car </h2>
-
-//       </Container>
+export default EditProfile;

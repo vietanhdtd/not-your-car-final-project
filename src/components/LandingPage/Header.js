@@ -14,6 +14,8 @@ import {
 import * as ReactDatetime from "react-datetime";
 import Geosuggest from 'react-geosuggest';
 import validate from '../ValidateRules/CheckAvailableValidateRules';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 function IndexHeader(props) {
   const [location, setLocation] = useState()
@@ -145,7 +147,7 @@ function IndexHeader(props) {
                   </FormGroup>
             </Col>
             <Col sm="2" xs="12">
-            <Button className="text-dark" type="submit" color='warning' onClick={handleBooking} block>Check</Button>
+            <Button className="text-dark" type="submit" color='warning' onClick={handleBooking} block>Check Available</Button>
             </Col>
               </Row>
           </Container>

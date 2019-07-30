@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import Rating from "react-rating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faRegistered } from "@fortawesome/free-solid-svg-icons";
 
 
 function ChooseCar(props) {
@@ -29,13 +29,9 @@ function ChooseCar(props) {
           <Container>
             <Row>
               <Col className="ml-auto mr-auto" md="8">
-                <h2 className="title">Let's talk product</h2>
+                <h2 className="title">About not your car <FontAwesomeIcon icon={faRegistered}/></h2>
                 <p className="description">
-                  This is the paragraph where you can write more details about
-                  your product. Keep you user engaged by providing meaningful
-                  information. Remember that by this time, the user is curious,
-                  otherwise he wouldn't scroll to get here. Add a button if you
-                  want the user to see more.
+                not your car <FontAwesomeIcon icon={faRegistered}/> is a car sharing marketplace where guests can book any car they want, wherever they want it, from a vibrant community of local hosts across Viet Nam. Guests choose from a totally unique selection of nearby cars, while hosts earn extra money to offset the costs of car ownership.
                 </p>
                 <br />
                 <Button
@@ -57,7 +53,7 @@ function ChooseCar(props) {
                     <i className="nc-icon nc-album-2" />
                   </div>
                   <div className="description">
-                    <h4 className="info-title">Beautiful Gallery</h4>
+                    <h4 className="info-title">Free cancellation</h4>
                     <p className="description">
                       Spend your time generating new ideas. You don't have to
                       think of implementing.
@@ -74,7 +70,7 @@ function ChooseCar(props) {
                     <i className="nc-icon nc-bulb-63" />
                   </div>
                   <div className="description">
-                    <h4 className="info-title">New Ideas</h4>
+                    <h4 className="info-title">Endless options</h4>
                     <p>
                       Larger, yet dramatically thinner. More powerful, but
                       remarkably power efficient.
@@ -91,7 +87,7 @@ function ChooseCar(props) {
                     <i className="nc-icon nc-chart-bar-32" />
                   </div>
                   <div className="description">
-                    <h4 className="info-title">Statistics</h4>
+                    <h4 className="info-title">Insurance options included</h4>
                     <p>
                       Choose from a veriety of many colors resembling sugar
                       paper pastels.
@@ -108,7 +104,7 @@ function ChooseCar(props) {
                     <i className="nc-icon nc-sun-fog-29" />
                   </div>
                   <div className="description">
-                    <h4 className="info-title">Delightful design</h4>
+                    <h4 className="info-title">24/7 customer support</h4>
                     <p>
                       Find unique and handmade delightful designs related items
                       directly from our sellers.
@@ -140,7 +136,6 @@ function ChooseCar(props) {
                           {car.brand_name} {car.model}
                         </h6>
                         <CardText>
-                          status:{" "}
                           <Badge color="success" pill>
                             {car.car_status}
                           </Badge>
@@ -155,7 +150,7 @@ function ChooseCar(props) {
                         <Badge color="vanh">{car.gear_box}</Badge>{" "}
                         </CardText>
                         <Row>
-                          <Col>
+                          <Col xs='8' lg='8'>
                         <Rating
                         readonly
                         initialRating={car.rate}
@@ -176,7 +171,7 @@ function ChooseCar(props) {
                         }
                       />
                           </Col>
-                      
+                          <Col><Badge color="default"><h6>${car.price}<small> /day</small></h6> </Badge></Col>
                         </Row>
                       </CardBody>
                     </Card>

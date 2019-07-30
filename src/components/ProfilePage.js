@@ -22,8 +22,10 @@ import {
 import moment from "moment";
 import Rating from "react-rating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar,faCoins, faDollarSign } from "@fortawesome/free-solid-svg-icons";
 import Footer from "./LandingPage/Footer";
+import ImgUpload from './ImageUpload'
+
 
 function ProfilePage(props) {
   const [listCar, setListCar] = useState([]);
@@ -38,7 +40,9 @@ function ProfilePage(props) {
   const [carID, setCarID] = useState("");
   const [bill, setBill] = useState({});
   const [isCheckout, setIsCheckout] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
   const [rate, setRate] = useState();
+  const [image, setImage] = useState();
   let pageHeader = React.createRef();
 
   console.log(props);
@@ -81,6 +85,24 @@ function ProfilePage(props) {
     setModalConfirm(!modalConfirm);
   };
 
+  const handleImageUrl = async (img_url) => {
+    setImage(img_url)
+}
+
+const handleUploadImage = async () => {
+  const response = await fetch("https://not-your-car.herokuapp.com/upload_profile", {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${localStorage.getItem("token")}`,
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({image_url: image})
+    });
+    const jsonData = response.json()
+    console.log(jsonData)
+}
+
   const toggleModalCheckout = (id, id2) => {
     setBookingID(id);
     setCarID(id2);
@@ -92,8 +114,7 @@ function ProfilePage(props) {
   };
 
   const handleStar = (e) => {
-    e.preventDefault()
-    setRate(e)
+      setRate(e)
   }
   const handleRating = async () => {
     console.log(rate);
@@ -220,16 +241,13 @@ function ProfilePage(props) {
                     {props.userInfo.user_name}
                     <br />
                   </h4>
-                  <h4 className="description">ID {props.userInfo.user_id}</h4>
                   <h6 className="description">{props.userInfo.email}</h6>
                 </div>
               </div>
               <Row>
                 <Col className="ml-auto mr-auto text-center" md="6">
-                  <p>toi la ai? toi dang o dau?</p>
-                  <br />
-                  <Button className="btn-round" color="default" outline>
-                    <i className="fa fa-cog" /> Settings
+                  <Button className="btn-round" color="default" onClick={() => {setIsEdit(true);toggleModalDecline()}} outline>
+                    <i className="fa fa-cog" /> Edit profile
                   </Button>
                 </Col>
               </Row>
@@ -459,7 +477,55 @@ function ProfilePage(props) {
                 </TabPane>
               </TabContent>
               <Modal isOpen={modalDecline} toggle={() => toggleModalDecline()}>
-                <div className="modal-header">
+                  {isEdit ? (
+                  <>
+                    <div className="modal-header">
+                  <button
+                    aria-label="Close"
+                    className="close"
+                    type="button"
+                    onClick={toggleModalDecline}
+                  >
+                    <span aria-hidden={true}>×</span>
+                  </button>
+                  <h5
+                    className="modal-title text-center"
+                    id="exampleModalLabel"
+                  >
+                    Choose your Image
+                  </h5>
+                </div>
+                <div className="modal-body">
+                <ImgUpload
+                      handleImageUrl={(img_url) => handleImageUrl(img_url)}
+                    />
+                </div>
+                <div className="modal-footer">
+                  <div className="left-side">
+                    <Button
+                      className="btn-link"
+                      color="default"
+                      data-dismiss="modal"
+                      type="button"
+                      onClick={() => handleUploadImage()}
+                    >
+                      Confirm
+                    </Button>
+                  </div>
+                  <div className="divider" />
+                  <div className="right-side">
+                    <Button
+                      className="btn-link"
+                      color="danger"
+                      type="button"
+                      onClick={() => toggleModalDecline()}
+                    >
+                      Cancel
+                    </Button>
+                  </div></div>
+                  </>) : (
+                    <>
+                    <div className="modal-header">
                   <button
                     aria-label="Close"
                     className="close"
@@ -504,7 +570,8 @@ function ProfilePage(props) {
                       Cancel
                     </Button>
                   </div>
-                </div>
+                  </div>
+                  </>)}
               </Modal>
               <Modal isOpen={modalConfirm} toggle={() => toggleModalConfirm()}>
                 <div className="modal-header">
@@ -575,8 +642,9 @@ function ProfilePage(props) {
                 {isCheckout ? (
                   <>
                     <div className="modal-body">
-                      <Rating
-                        onChange={rate => {handleStar(rate)}}
+                      <Col className='d-flex justify-content-center'><Rating
+                        initialRating={rate}
+                        onClick={rate => {handleStar(rate)}}
                         emptySymbol={
                           <FontAwesomeIcon
                             icon={faStar}
@@ -591,10 +659,9 @@ function ProfilePage(props) {
                             size="3x"
                           />
                         }
-                      />
-                      <p>Thank you for using our servies:</p>
-                      <h6>Total: </h6>
-                      {bill.total_bill}
+                      /></Col>
+                      <Col className='text-center mt-4'><h5>Thank you for using our servies</h5></Col>
+                      <Col  className='text-center mt-4'> <h4>it's <FontAwesomeIcon icon={faDollarSign}/>{bill.total_bill} total in {bill.rental_time} days</h4></Col>
                     </div>
                     <div className="modal-footer">
                       <div className="left-side">

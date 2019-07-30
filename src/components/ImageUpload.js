@@ -1,7 +1,7 @@
 import React from "react";
 import Dropzone from "react-dropzone";
 import request from "superagent";
-
+import {Button} from 'reactstrap'
 
 const CLOUDINARY_UPLOAD_PRESET = "kpwzohvu";
 const CLOUDINARY_UPLOAD_URL =
@@ -89,23 +89,28 @@ export default class ImgUpload extends React.Component {
                 <div {...getRootProps()}>
                   <input {...getInputProps()}/>
                   {this.state.uploadedFileCloudinaryUrl ? (
-                    <div>
+                    <div className="owner1">
+                      <div class="avatar">
                       <img
-                        className="img-fluid img-underlay" width="100%" alt="team"
+                        className="img-circle img-no-padding img-responsive" alt="team"
                         src={this.state.uploadedFileCloudinaryUrl}
                       />
                     </div>
+                    </div>
                   ) : <span/>}
-                  { this.state.isLoading ? <button className="btn btn-transparent text-light">Uploading...</button> : <button className="btn btn-transparent text-light">
+                  { this.state.isLoading ? <Button className="btn-round btn-icon" color="warning">Uploading...</Button> :
+                  this.state.delete_token ? 
+                    <><Button className="btn-round btn-icon" color="warning">
                       <strong>Upload photo</strong>
-                    </button>}
-                    
-                    
+                    </Button>
+                    <Button className="btn-round btn-icon" color="warning" onClick={(event) => this.handleDestroyImage(event, this.state.delete_token)}> Remove</Button></> : 
+                    <Button className="btn-round btn-icon" color="warning">
+                    <strong>Upload photo</strong>
+                  </Button> }
                 </div>
               );
             }}
           </Dropzone>
-          { this.state.delete_token ? <button className="btn btn-delete" onClick={(event) => this.handleDestroyImage(event, this.state.delete_token)}> Remove</button> : <></>}
         </div>
     );
   }

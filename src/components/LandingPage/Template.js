@@ -30,7 +30,7 @@ function LandingPage() {
       <div className="main">
         <div className="section section-dark text-center">
           <Container>
-            <h2 className="title">Let's talk about us</h2>
+            <h2 className="title">about us</h2>
             <Row>
               <Col md="4">
                 <Card className="card-profile card-plain">
@@ -45,7 +45,7 @@ function LandingPage() {
                   <CardBody>
                     <a href="#pablo" onClick={e => e.preventDefault()}>
                       <div className="author">
-                        <CardTitle tag="h4">Henry Ford <FontAwesomeIcon icon={faSignOutAlt}/> </CardTitle>
+                        <CardTitle tag="h4">Henry Ford</CardTitle>
                         <h6 className="card-category">Product Manager</h6>
                       </div>
                     </a>
@@ -141,7 +141,7 @@ function LandingPage() {
                     <a href="#pablo" onClick={e => e.preventDefault()}>
                       <img
                         alt="..."
-                        src={require("assets/img/fabio-mangione.jpg")}
+                        src={require("assets/img/ryan.jpg")}
                       />
                     </a>
                   </div>

@@ -13,8 +13,8 @@ import IndexHeader from "./components/LandingPage/Header";
 import ChooseCar from "./components/LandingPage/ChooseCar";
 import Footer from "./components/LandingPage/Footer";
 import RegisterPage from "./components/Form/Register";
-import RentOut from "./components/Form/RentOut";
-import EditCar from "./components/Form/EditCar";
+import RentOut from "./components/Form/ListYourCar";
+import EditProfile from "./components/Form/EditProfile";
 import Login from "./components/Form/Login";
 import BookingCar from "./components/BookingCar";
 import ProfilePage from "./components/ProfilePage";
@@ -198,8 +198,8 @@ function App(props) {
         />
 
         <PrivateRoute
-          path="/edit_car/:id"
-          component={props => <EditCar {...props} listCar={listCar} />}
+          path="/editprofile"
+          component={props => <EditProfile {...props} listCar={listCar} />}
         />
       </Switch>
     </Router>

@@ -16,7 +16,7 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSignOutAlt, faUserAstronaut, faPlusSquare } from '@fortawesome/free-solid-svg-icons'
+import { faSignOutAlt, faUserAstronaut, faPlusSquare, faRegistered } from '@fortawesome/free-solid-svg-icons'
 
 
 function NavBar(props) {
@@ -73,7 +73,7 @@ function NavBar(props) {
               href="/"
               className={classnames("font-weight-bold", navbarBrandColor)}
             >
-              not your car
+              not your car <FontAwesomeIcon icon={faRegistered}/>
             </a>
           </NavbarBrand>
           <button
@@ -102,7 +102,7 @@ function NavBar(props) {
                     tag={Link}
                     to="/rentout"
                   >
-                    Rent Out a Car  <FontAwesomeIcon icon={faPlusSquare}/>
+                    List your car  <FontAwesomeIcon icon={faPlusSquare}/>
                   </NavLink>
                   </NavItem>
                   <NavItem>

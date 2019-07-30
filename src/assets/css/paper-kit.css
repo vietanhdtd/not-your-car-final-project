@@ -3788,7 +3788,7 @@ License - nucleoapp.com/license/
 
 .modal-body {
   padding: 20px 50px;
-  color: #000; }
+  color: #66615b; }
 
 .modal-footer {
   border-top: 1px solid #DDDDDD;
@@ -4658,6 +4658,16 @@ License - nucleoapp.com/license/
   padding: 15px;
   max-width: 180px;
   margin: -85px auto 0;
+  display: inline-block;
+  box-shadow: blue; }
+
+.owner1 {
+  text-align: center; }
+
+.owner1 .avatar {
+  padding: 15px;
+  max-width: 190px;
+  /* margin: -85px auto 0; */
   display: inline-block;
   box-shadow: blue; }
 

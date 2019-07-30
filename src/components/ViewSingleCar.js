@@ -153,18 +153,18 @@ function ViewSingleCar(props) {
                   {carInfo.brand_name} {carInfo.model}
                 <br />
               </h2>
-              <h4 className="description mb-3">{carInfo.description}</h4>
-              <h2 className="mb-3 text-danger">$ {carInfo.price}<p className="text-dark">per day</p></h2>
+              <h5 className="description mb-3">{carInfo.description}</h5>
+              <h1 className="mb-3 p-0"><h6 className='m-0' pill>${carInfo.price}<small> /day</small></h6></h1>
             <Col className="text-center">
             <Badge color="vanh">{carInfo.class_name}</Badge>{" "}
               <Badge color="vanh">{carInfo.fuel}</Badge>{" "}
               <Badge color="vanh">{carInfo.door} door</Badge>{" "}
               <Badge color="vanh">{carInfo.gear_box}</Badge>{" "}
               <br />
+              <Col className="mt-3">
               <Rating
               readonly
-              initialRating={5}
-              // onChange={rate => setRate(rate)}
+              initialRating={carInfo.rate}
               emptySymbol={
                 <FontAwesomeIcon
                   icon={faStar}
@@ -182,26 +182,13 @@ function ViewSingleCar(props) {
               }
             />
             </Col>
+            </Col>
             </div>
           </div>            
           </Col>
           <br />
-          <Col className = "mt-4 text-center">
-              <h1>OK</h1>
-        {bookedDate && bookedDate.filter(b => b.booking_status != "Done").map((i,idx) => {
-          return (
-            <div>
-              
-              {i.location}
-              <h6>From: {moment.utc(i.pick_date).format('MMMM Do YYYY, HH:mm')}</h6>
-              <h6>To: {moment.utc(i.return_date).format('MMMM Do YYYY, HH:mm')}</h6>
-            </div>
-          )
-        })}
-          </Col>
-          </Row>
-        <Row className="mt-5">
-              <Col sm="4" xs="12" className="mb-3">
+          <Col className = "mt-4">
+              <Col sm="12" xs="12" className="mb-3">
               <Geosuggest
                 country = "VN"
                 initialValue = {location}
@@ -213,7 +200,7 @@ function ViewSingleCar(props) {
                   <p className="help text-danger">{errors.location}</p>
                 )}
               </Col>
-                <Col sm="3" xs="12">
+                <Col sm="12" xs="12">
                   <FormGroup className ={`form ${errors.pick_date && 'has-danger'}`}>
                     <InputGroup className="date" id="datetimepicker1">
                       <ReactDatetime
@@ -267,10 +254,23 @@ function ViewSingleCar(props) {
                 )}
                   </FormGroup>
             </Col>
-            <Col sm="2" xs="12">
+            <Col sm="12" xs="12">
             <Button type="submit" color='danger' onClick={handleBooking} block>Book Now</Button>
             </Col>
-              </Row>
+            <h4 className='text-center'><Badge color="success" pill>Booked day</Badge></h4>
+            {bookedDate && bookedDate.filter(b => b.booking_status != "Done").map((i,idx) => {
+          return (
+            <Col className='mt-4'>
+              <Col className='mt-3'>
+              <Badge color="default" pill>Booking No.{idx+1}</Badge>
+              <h4 className='m-0'><h6><small>From : </small> {moment.utc(i.pick_date).format('MMMM Do YYYY, HH:mm')}</h6></h4>
+              <h4 className='m-0'><h6><small>Until : </small> {moment.utc(i.return_date).format('MMMM Do YYYY, HH:mm')}</h6></h4>
+              </Col>
+            </Col>
+          )
+        })}
+        </Col>
+          </Row>
               <Modal isOpen={modal}  toggle={() => toggleModal()}>
                 <div className="modal-header">
                   <button
@@ -285,7 +285,7 @@ function ViewSingleCar(props) {
                     className="modal-title text-center"
                     id="exampleModalLabel"
                   >
-                    Modal title
+                    success booking
                   </h5>
                 </div>
                 <div className="modal-body">

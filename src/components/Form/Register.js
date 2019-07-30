@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Card, Form, Input, Container, Row, Col, FormGroup, Label } from "reactstrap";
 import useForm from "./useForm";
 import validate from "../ValidateRules/RegisterValidate";
-
+import {Link} from 'react-router-dom'
 
 function RegisterPage() {
   const [data, setData ] = useState('')
@@ -134,11 +134,11 @@ function RegisterPage() {
               <div className="forgot">
                 <Button
                   className="btn-link"
-                  color="danger"
-                  href="#pablo"
-                  onClick={e => e.preventDefault()}
+                  color="warning"
+                  to='/login'
+                  tag={Link}
                 >
-                  Forgot password?
+                  already have an account?
                 </Button>
               </div>
             </Card>

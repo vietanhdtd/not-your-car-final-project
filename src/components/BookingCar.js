@@ -25,6 +25,7 @@ import Geosuggest from "react-geosuggest";
 import Rating from "react-rating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import Footer from "./LandingPage/Footer";
 
 function BookingCar(props) {
   const [modal, setModal] = useState(false);
@@ -255,6 +256,7 @@ function BookingCar(props) {
           );
         })}
       </Container>
+      <Footer/>
     </>
   );
 }

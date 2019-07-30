@@ -49,10 +49,10 @@ function RentOut(props) {
   useEffect(() => {
     window.scrollTo(0, 0);
     document.body.classList.add("register-page");
-    document.body.style.overflow = "hidden";
+    // document.body.style.overflow = "hidden";
     return function cleanup() {
       document.body.classList.remove("register-page");
-    document.body.style.overflow = "auto";
+    // document.body.style.overflow = "auto";
     };
   });
 

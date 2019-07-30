@@ -23,6 +23,7 @@ import moment from "moment";
 import Rating from "react-rating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import Footer from "./LandingPage/Footer";
 
 function ProfilePage(props) {
   const [listCar, setListCar] = useState([]);
@@ -657,6 +658,7 @@ function ProfilePage(props) {
           </Row>
         </Container>
       </div>
+      <Footer/>
     </>
   );
 }

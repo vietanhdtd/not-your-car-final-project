@@ -30,6 +30,7 @@ const Home = props => {
       <IndexHeader {...props} />
       <ChooseCar {...props} />
       <LandingPage />
+      <Footer />
     </div>
   );
 };
@@ -201,7 +202,6 @@ function App(props) {
           component={props => <EditCar {...props} listCar={listCar} />}
         />
       </Switch>
-      <Footer />
     </Router>
   );
 }

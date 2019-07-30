@@ -23,6 +23,7 @@ import Geosuggest from 'react-geosuggest';
 import  useForm from './Form/useForm'
 import ValidateBookingDate from './ValidateRules/CheckAvailableValidateRules';
 import moment from 'moment'
+import Footer from "./LandingPage/Footer";
 
 
 function ViewSingleCar(props) {
@@ -303,6 +304,7 @@ function ViewSingleCar(props) {
               </Modal>
           </Container>
       </div>
+      <Footer/>
     </>
   );
 }

@@ -18,6 +18,7 @@ Badge
 import Rating from "react-rating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import Footer from "./LandingPage/Footer";
 
 function AllCars(props) {
     const [listCar, setListCar] = useState([]);
@@ -266,6 +267,7 @@ function AllCars(props) {
             </TabContent>
         </div>
         </Container>
+        <Footer/>
     </div>
     );
     }

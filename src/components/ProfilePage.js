@@ -234,7 +234,7 @@ const handleUploadImage = async () => {
                   <img
                     alt="..."
                     className="img-circle img-no-padding img-responsive"
-                    src={props.userInfo.profile_image || require("assets/img/eva.jpg")}
+                    src={props.userInfo.profile_image || require("assets/img/ryan.jpg")}
                   />
                 </div>
                 <div className="name">

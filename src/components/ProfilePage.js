@@ -99,8 +99,9 @@ const handleUploadImage = async () => {
       },
       body: JSON.stringify({image_url: image})
     });
-    const jsonData = response.json()
+    const jsonData = await response.json()
     console.log(jsonData)
+    setModalDecline(!modalDecline);
 }
 
   const toggleModalCheckout = (id, id2) => {

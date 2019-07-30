@@ -1696,6 +1696,11 @@ textarea.form-control {
 .badge-default {
   background-color: #66615B; }
 
+.badge-vanh {
+  border: 1px solid lightgray;
+  color: gray;
+}
+
 .pagination > li > a,
 .pagination > li > span,
 .pagination > li:first-child > a,
@@ -3996,7 +4001,7 @@ License - nucleoapp.com/license/
 .footer nav > ul > li {
   display: inline-block;
   padding: 10px 15px;
-  margin: 15px 3px;
+  /* margin: 15px 3px; */
   line-height: 20px;
   text-align: center; }
 
@@ -4653,7 +4658,15 @@ License - nucleoapp.com/license/
   padding: 15px;
   max-width: 180px;
   margin: -85px auto 0;
-  display: inline-block; }
+  display: inline-block;
+  box-shadow: blue; }
+
+.owner .carpic {
+  padding: 15px;
+  /* max-width: 180px; */
+  margin: -85px auto 0;
+  display: inline-block;
+  box-shadow: blue; }
 
 .owner .name h4 {
   margin-top: 10px; }
@@ -6156,8 +6169,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   padding: 0px;
   border-radius: 50%; }
   .rdtDay.rdtToday.rdtActive, .rdtDay.rdtActive, .rdtDay.rdtActive:hover {
-    background-color: #51cbce !important;
-    color: #FFFFFF; }
+    background-color: #fab72c !important;
+    color: rgb(0, 0, 0); }
 
 .rdtDays tr .dow {
   text-align: center;
@@ -6222,7 +6235,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .rdtPicker th.rdtNext,
 .rdtPicker th.rdtPrev,
 .rdtPicker .rdtTimeToggle {
-  color: #ff0000; }
+  color: #b97c00; }
 
 .rdtPrev span,
 .rdtNext span {

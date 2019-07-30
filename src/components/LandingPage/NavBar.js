@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-// nodejs library that concatenates strings
 import classnames from "classnames";
-// reactstrap components
 import {
   Button,
   Collapse,
@@ -17,6 +15,9 @@ import {
   UncontrolledDropdown
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignOutAlt, faUserAstronaut, faPlusSquare } from '@fortawesome/free-solid-svg-icons'
+
 
 function NavBar(props) {
   const [navbarColor, setNavbarColor] = useState("navbar-transparent");
@@ -43,8 +44,8 @@ function NavBar(props) {
   useEffect(() => {
     const updateNavbarColor = () => {
       if (
-        document.documentElement.scrollTop > 299 ||
-        document.body.scrollTop > 299
+        document.documentElement.scrollTop > 200 ||
+        document.body.scrollTop > 200
       ) {
         setNavbarColor("");
         setNavbarBrandColor("text-dark h3");
@@ -99,9 +100,9 @@ function NavBar(props) {
                   <NavLink
                     color="neutral"
                     tag={Link}
-                    to="/createpost"
+                    to="/rentout"
                   >
-                    Rent Out a Car +
+                    Rent Out a Car  <FontAwesomeIcon icon={faPlusSquare}/>
                   </NavLink>
                   </NavItem>
                   <NavItem>
@@ -110,7 +111,7 @@ function NavBar(props) {
                     tag={Link}
                     to="/profile"
                     >
-                    {props.userInfo.user_name} <i className="nc-icon nc-single-02" />
+                    {props.userInfo.user_name} <FontAwesomeIcon icon={faUserAstronaut}/>
                   </NavLink>
                     </NavItem>
                     <NavItem>
@@ -118,7 +119,7 @@ function NavBar(props) {
                   href="/"
                   onClick={(e) => logOut(e)}
                   >
-                    Log Out
+                    Log Out <FontAwesomeIcon icon={faSignOutAlt}/>
                   </NavLink>
                   </NavItem></>
               ) : (

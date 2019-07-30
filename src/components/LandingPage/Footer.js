@@ -1,7 +1,8 @@
 import React from "react";
 
-// reactstrap components
 import { Row, Container,Col } from "reactstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {  faRegistered } from '@fortawesome/free-solid-svg-icons'
 
 function Footer() {
   return (
@@ -15,14 +16,14 @@ function Footer() {
                 <a
                   target="_blank"
                 >
-                  Viet Anh Nguyen
+                  Not Your Car <FontAwesomeIcon icon={faRegistered}/>
                 </a>
               </li>
               <li>
                 <a
                   target="_blank"
                 >
-                  Not Your Car <img src="https://img.icons8.com/small/16/000000/registered-trademark.png"/>
+                  VietAnhNguyen
                 </a>
               </li>
               <li>

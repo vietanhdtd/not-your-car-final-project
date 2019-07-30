@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-
-// reactstrap components
 import { Container,
   Row,
   Col,
@@ -13,8 +11,10 @@ import { Container,
 
 import  useForm from './useForm'
 import validate from '../ValidateRules/CreatePostValidateRules';
+import ImgUpload from '../ImageUpload'
 
-function CreatePost() {
+
+function RentOut() {
   // const [data, setData] = useState({})
   // const [result, setResult] = useState(false);
   const [modal, setModal] = useState(false);
@@ -39,10 +39,18 @@ function CreatePost() {
   const toggleModal = () => {
       setModal(!modal);
   };
+
+  const handleImageUrl = (img_url) => {
+      console.log(img_url)
+  }
+  
   useEffect(() => {
+    window.scrollTo(0, 0);
     document.body.classList.add("register-page");
+    document.body.style.overflow = "hidden";
     return function cleanup() {
       document.body.classList.remove("register-page");
+    document.body.style.overflow = "auto";
     };
   });
 
@@ -50,7 +58,7 @@ function CreatePost() {
     <div
     className="page-header"
     style={{
-      backgroundImage: "url(" + require("assets/img/ilya-yakover.jpg") + ")"
+      backgroundImage: "url(" + require("assets/img/rent-out.jpg") + ")"
     }}
   >
     <div className="filter" />
@@ -58,7 +66,7 @@ function CreatePost() {
       <Row>
         <Col className="ml-auto mr-auto">
           <Card className="card-create ml-auto mr-auto">
-            <h2 className="mx-auto mb-4 font-weight-bold">Create A Rental Car</h2>
+            <h2 className="mx-auto mb-4 font-weight-bold">Rent Out Your Car</h2>
             <Form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-sm-7 col-md-7">
@@ -207,6 +215,11 @@ function CreatePost() {
                   <div className="col-sm-5 col-md-5">
               <h6 className="text-white">Product Image</h6>
               <div className="fileinput text-center mb-2">
+                {/* <Form>
+              <ImgUpload
+                      handleImageUrl={(img_url) => handleImageUrl(img_url)}
+                    />
+                </Form> */}
                 <img
                   style={{width:"440px"}}
                   src="https://camo.githubusercontent.com/d1b266fad8e2d9abd4a033a02a68f98e5ca53509/68747470733a2f2f6d61726b6574696e676465636f6e746575646f2e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031372f30362f7468756d626e61696c2e706e67"
@@ -222,14 +235,14 @@ function CreatePost() {
                 />
                 <div className="thumbnail">
                 </div>
-                {/* <div>
+                <div>
                   <button
                     type="button"
                     className="btn-round btn btn-outline-default"
                   >
                     Select image
                   </button>
-                </div> */}
+                </div>
               </div>
             </div>
           </div>
@@ -300,7 +313,7 @@ function CreatePost() {
   );
 }
 
-export default CreatePost;
+export default RentOut;
 
 
 //  <Container className="mt-5" style={{zIndex:1}}>

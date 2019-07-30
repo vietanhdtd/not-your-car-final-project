@@ -108,3 +108,7 @@ code {
   color:darkblue;
   font-weight: bold;
 }
+
+.FileUpload, .img-box {
+  height: 200px;
+}

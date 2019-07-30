@@ -22,6 +22,9 @@ import useForm from "./Form/useForm";
 import validate from "./ValidateRules/CheckAvailableValidateRules";
 import * as ReactDatetime from "react-datetime";
 import Geosuggest from "react-geosuggest";
+import Rating from "react-rating";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 function BookingCar(props) {
   const [modal, setModal] = useState(false);
@@ -112,15 +115,12 @@ function BookingCar(props) {
         className="all-car-header d-flex align-items-end justify-content-center mb-4"
         style={{
           backgroundImage:
-            "url(" + require("assets/img/allCar_header.png") + ")",
+            "url(" + require("assets/img/view-car-header2.jpg") + ")",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat"
         }}
       >
-        <div className="filter" />
-      </div>
-      <Container className="mt-5" style={{ zIndex: 1 }}>
-        <Row className="mt-5">
+          <Row className="mb-3">
           <Col sm="4" xs="12" className="mb-3">
             <Geosuggest
               country="VN"
@@ -188,11 +188,13 @@ function BookingCar(props) {
             </FormGroup>
           </Col>
           <Col sm="2" xs="12">
-            <Button type="submit" onClick={handleBooking}>
-              Book
-            </Button>
-          </Col>
+            <Button className="text-dark" type="submit" color='warning' onClick={handleBooking} block>Check</Button>
+            </Col>
         </Row>
+        <div className="filter" />
+      </div>
+      <Container className="mt-5" style={{ zIndex: 1 }}>
+
         {props.availableCar.sort().map(car => {
           return (
             <Link to={`/allcars/${car.id}`} className="mx-auto">
@@ -230,6 +232,23 @@ function BookingCar(props) {
                       </Badge>
                     </Row>
                   </Col>
+                  <Rating
+                        // onChange={rate => setRate(rate)}
+                        emptySymbol={
+                          <FontAwesomeIcon
+                            icon={faStar}
+                            color="#f5f5f0"
+                            // size="3x"
+                          />
+                        }
+                        fullSymbol={
+                          <FontAwesomeIcon
+                            icon={faStar}
+                            color="#fabd3c"
+                            // size="3x"
+                          />
+                        }
+                      />
                 </CardBody>
               </Card>
             </Link>

@@ -13,9 +13,11 @@ import {
   Container,
   Row,
   Col,
-  Input, Modal
+  Badge, Modal
 } from "reactstrap";
-
+import Rating from "react-rating";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import * as ReactDatetime from "react-datetime";
 import Geosuggest from 'react-geosuggest';
 import  useForm from './Form/useForm'
@@ -125,7 +127,7 @@ function ViewSingleCar(props) {
       <div
         style={{
           backgroundImage:
-            "url(" + require("assets/img/fabio-mangione.jpg") + ")"
+            "url(" + require("assets/img/view-car-header.jpg") + ")"
         }}
         className="page-header page-header-xs"
         data-parallax={true}
@@ -135,17 +137,68 @@ function ViewSingleCar(props) {
       </div>
       <div className="section profile-content">
       <Container>
-        <h1>{carInfo.id}</h1>
+        <Row>
+          <Col sm="12" lg="6">
+          <div className="owner">
+            <div className="carpic">
+              <img
+                alt="..."
+                className="img-thumbnail img-responsive"
+                src={carInfo.img}
+              />
+            </div>
+            <div className="name">
+              <h2 className="title">
+                  {carInfo.brand_name} {carInfo.model}
+                <br />
+              </h2>
+              <h4 className="description mb-3">{carInfo.description}</h4>
+              <h2 className="mb-3 text-danger">$ {carInfo.price}<p className="text-dark">per day</p></h2>
+            <Col className="text-center">
+            <Badge color="vanh">{carInfo.class_name}</Badge>{" "}
+              <Badge color="vanh">{carInfo.fuel}</Badge>{" "}
+              <Badge color="vanh">{carInfo.door} door</Badge>{" "}
+              <Badge color="vanh">{carInfo.gear_box}</Badge>{" "}
+              <br />
+              <Rating
+              readonly
+              initialRating={5}
+              // onChange={rate => setRate(rate)}
+              emptySymbol={
+                <FontAwesomeIcon
+                  icon={faStar}
+                  color="#f5f5f0"
+                  size="2x"
+                  
+                />
+              }
+              fullSymbol={
+                <FontAwesomeIcon
+                  icon={faStar}
+                  color="#fabd3c"
+                  size="2x"
+                />
+              }
+            />
+            </Col>
+            </div>
+          </div>            
+          </Col>
+          <br />
+          <Col className = "mt-4 text-center">
+              <h1>OK</h1>
         {bookedDate && bookedDate.filter(b => b.booking_status != "Done").map((i,idx) => {
           return (
             <div>
-              <h6>Booking no.{idx+1}</h6>
+              
               {i.location}
               <h6>From: {moment.utc(i.pick_date).format('MMMM Do YYYY, HH:mm')}</h6>
               <h6>To: {moment.utc(i.return_date).format('MMMM Do YYYY, HH:mm')}</h6>
             </div>
           )
         })}
+          </Col>
+          </Row>
         <Row className="mt-5">
               <Col sm="4" xs="12" className="mb-3">
               <Geosuggest
@@ -214,7 +267,7 @@ function ViewSingleCar(props) {
                   </FormGroup>
             </Col>
             <Col sm="2" xs="12">
-            <Button type="submit" onClick={handleBooking}>Book</Button>
+            <Button type="submit" color='danger' onClick={handleBooking} block>Book Now</Button>
             </Col>
               </Row>
               <Modal isOpen={modal}  toggle={() => toggleModal()}>

@@ -32,8 +32,11 @@ function RegisterPage() {
 
   useEffect(() => {
     document.body.classList.add("register-page");
+    document.body.style.overflow = "hidden";
     return function cleanup() {
       document.body.classList.remove("register-page");
+    // document.body.style.remove.overflow = "hidden";
+
     };
   });
 
@@ -41,10 +44,10 @@ function RegisterPage() {
     <div
       className="page-header"
       style={{
-        backgroundImage: "url(" + require("assets/img/login-image.jpg") + ")"
+        backgroundImage: "url(" + require("assets/img/login-image.jpg") + ")" 
       }}
     >
-      <div className="filter" />
+      <div className="filter"/>
       <Container>
         <Row>
           <Col className="ml-auto mr-auto">
@@ -63,7 +66,7 @@ function RegisterPage() {
               <Row className="mx-2">
                 <Col  className="p-0" style={{borderBottom:"1px solid #CDCDCD", margin:"10px"}}></Col>
                 <Col xs="6" sm="4" className="p-0 text-center">or create account</Col>
-              <Col className="p-0" style={{borderBottom:"1px solid #CDCDCD", margin:"10px" }}></Col>
+                <Col className="p-0" style={{borderBottom:"1px solid #CDCDCD", margin:"10px" }}></Col>
               </Row>
               <Form className="register-form" onSubmit={handleSubmit}>
               <Form className={`form ${errors.email && 'has-danger'}`}>

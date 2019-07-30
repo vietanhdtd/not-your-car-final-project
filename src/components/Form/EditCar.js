@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-
-// reactstrap components
 import { Container,
   Row,
   Col,

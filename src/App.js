@@ -7,13 +7,13 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
-import PrivateRoute from './components/PrivateRoute/PrivateRoute'
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import NavBar from "./components/LandingPage/NavBar";
 import IndexHeader from "./components/LandingPage/Header";
 import ChooseCar from "./components/LandingPage/ChooseCar";
 import Footer from "./components/LandingPage/Footer";
 import RegisterPage from "./components/Form/Register";
-import CreatePost from "./components/Form/CreatePost";
+import RentOut from "./components/Form/RentOut";
 import EditCar from "./components/Form/EditCar";
 import Login from "./components/Form/Login";
 import BookingCar from "./components/BookingCar";
@@ -28,8 +28,8 @@ const Home = props => {
   return (
     <div>
       <IndexHeader {...props} />
-      <LandingPage />
       <ChooseCar {...props} />
+      <LandingPage />
     </div>
   );
 };
@@ -89,13 +89,16 @@ function App(props) {
   };
 
   const getBookingDate = async () => {
-    const response = await fetch("https://127.0.0.1:5000/get_booking_datetime", {
-      method: "POST",
-      headers: {
-        Authorization: `Token ${token}`
-      },
-      body: JSON.stringify()
-    });
+    const response = await fetch(
+      "https://127.0.0.1:5000/get_booking_datetime",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Token ${token}`
+        },
+        body: JSON.stringify()
+      }
+    );
     const jsonData = await response.json();
     setUserInfo(jsonData);
     setLoading(true);
@@ -128,9 +131,7 @@ function App(props) {
 
   if (!loading) {
     return (
-      <div
-        style={{ display: "flex", marginTop: 350}}
-      >
+      <div style={{ display: "flex", marginTop: 350 }}>
         <BeatLoader
           css={override}
           sizeUnit={"px"}
@@ -161,7 +162,7 @@ function App(props) {
             )
           }
         />
-        <Route path="/register" component={RegisterPage} />
+        <Route path="/register" component={() => isLoggin ? <Redirect to="/" /> : <RegisterPage/>} />
         <Route
           path="/bookingcar"
           component={() => (
@@ -176,8 +177,8 @@ function App(props) {
           path="/profile"
           component={() => <ProfilePage userInfo={userInfo} />}
         />
-        <PrivateRoute path="/createpost" component={CreatePost} />
-        <Route path="/login" component={Login} />
+        <PrivateRoute path="/rentout" component={RentOut} />
+        <Route path="/login" component={() => isLoggin ? <Redirect to="/" /> : <Login/>} />
         <PrivateRoute
           path="/allcars/:id"
           exact

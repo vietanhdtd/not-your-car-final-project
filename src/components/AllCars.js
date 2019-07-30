@@ -1,6 +1,5 @@
 import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
-// reactstrap components
 import {
 Container,
 Row,
@@ -16,6 +15,9 @@ TabContent,
 TabPane,
 Badge
 } from "reactstrap";
+import Rating from "react-rating";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 function AllCars(props) {
     const [listCar, setListCar] = useState([]);
@@ -33,6 +35,8 @@ function AllCars(props) {
     console.log("list car", listCar);
 
     document.documentElement.classList.remove("nav-open");
+
+
     useEffect(() => {
     setListCar(props.listCar);
     document.body.classList.add("register-page");
@@ -53,7 +57,7 @@ function AllCars(props) {
         }}
         >
         <Row className="my-5">
-            <h1 className="title mx-auto text-white">Choose Your Car</h1>
+            <h1 className="title mx-auto text-white">choose your car</h1>
         </Row>
         </div>
         <Container>
@@ -124,6 +128,29 @@ function AllCars(props) {
                             <CardText>
                                 {car.description} {car.id}
                             </CardText>
+                            <CardText>
+                                <Badge color="vanh">{car.class_name}</Badge>{" "}
+                                <Badge color="vanh">{car.fuel}</Badge>{" "}
+                                <Badge color="vanh">{car.door} door</Badge>{" "}
+                                <Badge color="vanh">{car.gear_box}</Badge>{" "}
+                        </CardText>
+                            <Rating
+                                // onChange={rate => setRate(rate)}
+                                emptySymbol={
+                                <FontAwesomeIcon
+                                    icon={faStar}
+                                    color="#f5f5f0"
+                                    // size="3x"
+                                />
+                                }
+                                fullSymbol={
+                                <FontAwesomeIcon
+                                    icon={faStar}
+                                    color="#fabd3c"
+                                    // size="3x"
+                                />
+                                }
+                            />                                       
                             </CardBody>
                         </Card>
                         </Link>
@@ -154,6 +181,29 @@ function AllCars(props) {
                             <CardText>
                                 {car.description} {car.id}
                             </CardText>
+                            <CardText>
+                                <Badge color="vanh">{car.class_name}</Badge>{" "}
+                                <Badge color="vanh">{car.fuel}</Badge>{" "}
+                                <Badge color="vanh">{car.door} door</Badge>{" "}
+                                <Badge color="vanh">{car.gear_box}</Badge>{" "}
+                        </CardText>
+                            <Rating
+                        // onChange={rate => setRate(rate)}
+                        emptySymbol={
+                          <FontAwesomeIcon
+                            icon={faStar}
+                            color="#f5f5f0"
+                            // size="3x"
+                          />
+                        }
+                        fullSymbol={
+                          <FontAwesomeIcon
+                            icon={faStar}
+                            color="#fabd3c"
+                            // size="3x"
+                          />
+                        }
+                      />
                             </CardBody>
                         </Card>
                         </Link>
@@ -181,6 +231,31 @@ function AllCars(props) {
                             <CardText>
                                 {car.description} {car.id}
                             </CardText>
+                            <CardText>
+                                <Badge color="vanh">{car.class_name}</Badge>{" "}
+                                <Badge color="vanh">{car.fuel}</Badge>{" "}
+                                <Badge color="vanh">{car.door} door</Badge>{" "}
+                                <Badge color="vanh">{car.gear_box}</Badge>{" "}
+                        </CardText>
+                            <Rating
+                            readonly
+                            initialRating={5}
+                        // onChange={rate => setRate(rate)}
+                        emptySymbol={
+                          <FontAwesomeIcon
+                            icon={faStar}
+                            color="#f5f5f0"
+                            // size="3x"
+                          />
+                        }
+                        fullSymbol={
+                          <FontAwesomeIcon
+                            icon={faStar}
+                            color="#fabd3c"
+                            // size="3x"
+                          />
+                        }
+                      />
                             </CardBody>
                         </Card>
                         </Link>

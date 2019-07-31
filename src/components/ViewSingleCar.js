@@ -8,7 +8,7 @@ import {
   InputGroupAddon,
   InputGroupText,
   Nav,
-  TabContent,
+  Alert,
   TabPane,
   Container,
   Row,
@@ -33,13 +33,19 @@ function ViewSingleCar(props) {
   const [returnDate, setReturnDate] = useState("")
   const [bookedDate, setBookedDate] = useState()
   const [errors, setErrors] = useState({})
-
+  // const [invalid, setInvalid] = useState({})
+  const [alert, setAlert] = useState(false);
   const [modal, setModal] = useState(false);
 
   let pageHeader = React.createRef();
   
   let yesterday = ReactDatetime.moment().subtract(1, 'day');
-  
+
+
+  const onDismiss = () => {
+    setAlert(!alert);
+  };
+
   const validPick = ( current ) => {
     return current.isAfter( yesterday );
   };
@@ -79,6 +85,9 @@ function ViewSingleCar(props) {
     console.log(jsonData)
     if (jsonData.success)
       toggleModal()
+    if (jsonData.success == false){
+      onDismiss()
+    }
     };  
   
   const toggleModal = () => {
@@ -188,6 +197,9 @@ function ViewSingleCar(props) {
           </Col>
           <br />
           <Col className = "mt-4">
+          <Alert color="danger" isOpen={alert} toggle={onDismiss}>
+                  <b>Please choose another date</b>
+                </Alert>
               <Col sm="12" xs="12" className="mb-3">
               <Geosuggest
                 country = "VN"

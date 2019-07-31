@@ -80,7 +80,6 @@ function ChooseCar(props) {
                   </div>
                   <div className="description">
                     <h4 className="info-title">Insurance options included</h4>
-
                     <Button className="btn-link" color="info" href="#pablo">
                       See more
                     </Button>
@@ -94,7 +93,6 @@ function ChooseCar(props) {
                   </div>
                   <div className="description">
                     <h4 className="info-title">24/7 customer support</h4>
-
                     <Button className="btn-link" color="info" href="#pablo">
                       See more
                     </Button>

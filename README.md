@@ -15,8 +15,11 @@ not your car  is a car sharing marketplace where guests can book any car they wa
 
 
 *User can see list of car available for rent and see the car rating.*
+
 *User can create a post for car rental*
+
 *User can create a blog about car*
+
 *User can rate a car when they checkout*
 
 

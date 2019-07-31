@@ -54,10 +54,6 @@ function ChooseCar(props) {
                   </div>
                   <div className="description">
                     <h4 className="info-title">Free cancellation</h4>
-                    <p className="description">
-                      Spend your time generating new ideas. You don't have to
-                      think of implementing.
-                    </p>
                     <Button className="btn-link" color="info" href="#pablo">
                       See more
                     </Button>
@@ -71,10 +67,6 @@ function ChooseCar(props) {
                   </div>
                   <div className="description">
                     <h4 className="info-title">Endless options</h4>
-                    <p>
-                      Larger, yet dramatically thinner. More powerful, but
-                      remarkably power efficient.
-                    </p>
                     <Button className="btn-link" color="info" href="#pablo">
                       See more
                     </Button>
@@ -88,10 +80,7 @@ function ChooseCar(props) {
                   </div>
                   <div className="description">
                     <h4 className="info-title">Insurance options included</h4>
-                    <p>
-                      Choose from a veriety of many colors resembling sugar
-                      paper pastels.
-                    </p>
+
                     <Button className="btn-link" color="info" href="#pablo">
                       See more
                     </Button>
@@ -105,10 +94,7 @@ function ChooseCar(props) {
                   </div>
                   <div className="description">
                     <h4 className="info-title">24/7 customer support</h4>
-                    <p>
-                      Find unique and handmade delightful designs related items
-                      directly from our sellers.
-                    </p>
+
                     <Button className="btn-link" color="info" href="#pablo">
                       See more
                     </Button>

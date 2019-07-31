@@ -280,22 +280,14 @@ function ListYourCar(props) {
                   Your car has been posted to <strong>not your car</strong>. Now every one can rents your car. 
                 </div>
                 <div className="modal-footer">
-                  <div className="left-side">
                     <Button
                       className="btn-link"
                       color="default"
                       type="button"
                       onClick={() => toggleModal()}
                     >
-                      Never mind
+                      Great
                     </Button>
-                  </div>
-                  <div className="divider" />
-                  <div className="right-side">
-                    <Button className="btn-link" color="danger" type="button">
-                      Delete
-                    </Button>
-                  </div>
                 </div>
               </Modal>
           </Row>

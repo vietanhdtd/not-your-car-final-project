@@ -456,12 +456,12 @@ const handleUploadImage = async () => {
                                   .utc(book.return_date)
                                   .format("MMMM Do YYYY, HH:mm")}
                               </CardText>
-                              <CardText>
+                              {/* <CardText>
                                 <Button
                                   className="btn-round"
                                   color="info"
                                   onClick={() =>
-                                    toggleModalCheckout(
+                                    (
                                       book.booking_id,
                                       book.cars.id
                                     )
@@ -469,7 +469,7 @@ const handleUploadImage = async () => {
                                 >
                                   View
                                 </Button>
-                              </CardText>
+                              </CardText> */}
                             </CardBody>
                           </Card>
                         );

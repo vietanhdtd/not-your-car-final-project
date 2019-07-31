@@ -4,7 +4,7 @@ website : https://notyourcar.netlify.com/
 
 Not Your Car is a car rental site with mobile-friendly design. 
 
-![not your car](/assets/img/LandingPage.png)
+![not your car](src/assets/img/LandingPage.png)
 
 ### Motivations + Problems
 

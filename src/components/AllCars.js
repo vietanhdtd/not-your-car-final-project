@@ -258,7 +258,7 @@ return (
                 {listCar.sort().map(car => {
                 return (
                     <Link to={`/allcars/${car.id}`} className="mx-auto">
-                    <Card style={{ width: "21.5rem" }} className="mx-auto">
+                    <Card style={{ width: "21.5rem", maxHeight: 485 }} className="mx-auto">
                         <CardImg top src={car.img} alt="cx-5" />
                         <CardBody>
                         <h6>

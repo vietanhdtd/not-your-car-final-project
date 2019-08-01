@@ -186,6 +186,22 @@ const handleUploadImage = async () => {
     getUserBooking();
   };
 
+
+  const handleDelete = async (id) => {
+    console.log(id)
+    const response = await fetch("https://not-your-car.herokuapp.com/delete_car", {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${localStorage.getItem("token")}`,
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({car_id: id })
+    });
+    const jsonData = await response.json();
+    console.log(jsonData);
+  }
+
   document.documentElement.classList.remove("nav-open");
 
   useEffect(() => {
@@ -414,13 +430,14 @@ const handleUploadImage = async () => {
                             <CardText>
                               {car.description} {car.id}
                             </CardText>
-                            <Link
-                              to={`/edit_car/${car.id}`}
+                            <Button
+                              // to={`/edit_car/${car.id}`}
                               className="mx-auto"
-                              key={car.id}
+                              // key={car.id}
+                              onClick={() => handleDelete(car.id)}
                             >
                               edit
-                            </Link>
+                            </Button>
                           </CardBody>
                         </Card>
                       );

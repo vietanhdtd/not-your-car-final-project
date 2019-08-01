@@ -31,12 +31,14 @@ function Login() {
       body: JSON.stringify(inputs)
     })
     const jsonData = await response.json()
-    if (jsonData.success)
-    setData(jsonData)
-    setAlertDanger(true)
-      window.location.replace(`https://notyourcar.netlify.com/?access_token=${jsonData.token}`)
-    if (jsonData.result)
-      setData(jsonData)
+    console.log(jsonData)
+    if (jsonData.success) 
+      {setData(jsonData)
+      setAlertDanger(true)
+      window.location.replace(`https://notyourcar.netlify.com/?access_token=${jsonData.token}`)}
+    else
+      {setData(jsonData)
+      setAlertDanger(true)}
   };
   
   const { inputs, errors, handleInputChange, handleSubmit } = useForm (
